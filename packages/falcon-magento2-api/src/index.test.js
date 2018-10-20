@@ -63,4 +63,10 @@ describe('Magento2Api', () => {
       expect(error.extensions.response.status).toBe(401);
     }
   });
+
+  it('Should correctly convert paths returned by Magento2 to urls', () => {
+    expect(api.convertPathToUrl('test')).toBe('/test.html');
+    // null should not not be converted
+    expect(api.convertPathToUrl(null)).toBe(null);
+  });
 });

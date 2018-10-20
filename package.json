@@ -33,8 +33,6 @@
     "packages/falcon-logger",
     "packages/falcon-shop-extension",
     "packages/falcon-blog-extension",
-    "packages/falcon-tweets-extension",
-    "packages/falcon-dynamic-route-extension",
     "packages/falcon-magento2-api",
     "packages/falcon-wordpress-api",
     "packages/falcon-errors",

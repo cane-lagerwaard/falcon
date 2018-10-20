@@ -14,8 +14,8 @@ All paths should point to directories with file structure compatible with `{{lng
 
 ```
 -en
-|-common.json
-|-blog.json
-|-...
+  |-common.json
+  |-blog.json
+  |-...
 -...
 ```

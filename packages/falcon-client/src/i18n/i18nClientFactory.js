@@ -13,7 +13,7 @@ const loadLocale = (url, options, callback) =>
       callback(null, { status: '404' });
     });
 
-export default ({ lng = 'en', fallbackLng = 'en', whitelist = ['en'], debug = false } = {}) => {
+export default ({ lng = 'en', fallbackLng = 'en', whitelist = ['en'], debug = false, resources } = {}) => {
   const defaultNS = 'common';
 
   const instance = i18next.use(XHR).init({
@@ -24,6 +24,7 @@ export default ({ lng = 'en', fallbackLng = 'en', whitelist = ['en'], debug = fa
     defaultNS,
     fallbackNS: defaultNS,
     saveMissing: false,
+    resources,
     debug,
     react: {
       nsMode: 'fallback'

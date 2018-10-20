@@ -75,13 +75,8 @@ const FalconServer = require('@deity/falcon-server');
 const config = {
   "extensions": [
     {
-      "package": "@deity/falcon-tweets-extension",
-      "options": {
-        "apiKey": "Your Twitter API key"
-      }
-    },
-    {
-      "package": "@deity/falcon-dynamic-route-extension"
+      "package": "@deity/falcon-blog-extension",
+      "config": {}
     }
   ]
 };

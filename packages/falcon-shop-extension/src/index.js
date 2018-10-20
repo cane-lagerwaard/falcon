@@ -1,5 +1,5 @@
 const Logger = require('@deity/falcon-logger');
-const { Extension } = require('@deity/falcon-server-env');
+const { Extension, ApiUrlPriority } = require('@deity/falcon-server-env');
 const { resolve } = require('path');
 
 const typeDefs = require('fs').readFileSync(resolve(__dirname, 'schema.graphql'), 'utf8');
@@ -85,11 +85,7 @@ module.exports = class Shop extends Extension {
    * @returns {Number} - priority factor
    */
   getFetchUrlPriority(path) {
-    if (path.endsWith('.html')) {
-      return 5;
-    }
-
-    return 20;
+    return path.endsWith('.html') ? ApiUrlPriority.HIGH : ApiUrlPriority.NORMAL;
   }
 
   async fetchUrl(root, { path }, { session = {} }) {

@@ -14,4 +14,4 @@ using instructions below.
 
 ## Docs
 
-Please visit: https://falcon-ui-410.netlify.com/
+Please visit: https://falcon-ui.docs.deity.io

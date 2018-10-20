@@ -7,14 +7,16 @@ import ApolloClient from '../../service/ApolloClient';
  * @param {Object.<string, {defaults, resolvers}>} - dictionary of Apollo States.
  * @return {function(ctx: object, next: function): Promise<void>} Koa middleware function
  */
-export default ({ clientStates }) => {
+export default ({ clientStates = {} }) => {
   const mergedClientState = Object.keys(clientStates).reduce(
     (result, key) => {
-      if (clientStates[key].defaults) {
-        result.defaults = { ...result.defaults, ...clientStates[key].defaults };
-      }
-      if (clientStates[key].resolvers) {
-        result.resolvers = { ...result.resolvers, ...clientStates[key].resolvers };
+      if (clientStates[key]) {
+        if (clientStates[key].defaults) {
+          result.defaults = { ...result.defaults, ...clientStates[key].defaults };
+        }
+        if (clientStates[key].resolvers) {
+          result.resolvers = { ...result.resolvers, ...clientStates[key].resolvers };
+        }
       }
 
       return result;

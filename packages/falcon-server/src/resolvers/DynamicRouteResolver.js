@@ -1,25 +1,29 @@
-const { Extension } = require('@deity/falcon-server-env');
 const Logger = require('@deity/falcon-logger');
-const { resolve, extname } = require('path');
-const { readFileSync } = require('fs');
 
 /**
- * Dynamic Route Extension extension.
+ * Dynamic Route GraphQL Resolver.
  *
- * Dynamic {@link DynamicRouteExtension#fetchUrl url discovery} to connect multiple external api generated urls
+ * Dynamic {@link DynamicRouteResolver#fetchUrl url discovery} to connect multiple external api generated urls
  * (example: sale.html)
  * It provides back information about entity type for passed url:
  *
  * @example
  * {
- *  type: 'category',
+ *  type: 'shop-category',
  *  path: '/category/page/path/',
  *  id: 1
  * }
  *
  * That information can be used for fetching detailed data of that url.
  */
-module.exports = class DynamicRouteExtension extends Extension {
+module.exports = class DynamicRouteResolver {
+  /**
+   * @param {ExtensionContainer} extensionContainer Instance of ExtensionContainer
+   */
+  constructor(extensionContainer) {
+    this.extensionContainer = extensionContainer;
+  }
+
   /**
    * Reorder handlers based on request path to boost performance,
    * for example 99% urls ending with .html are Magento generated
@@ -30,31 +34,11 @@ module.exports = class DynamicRouteExtension extends Extension {
   getDynamicRouteHandlers(path) {
     return this.extensionContainer
       .getExtensionsByCriteria(ext => ext.getFetchUrlPriority && ext.getFetchUrlPriority(path) > 0)
-      .sort((first, second) => second.getFetchUrlPriority(path) - first.getFetchUrlPriority(path));
+      .sort((first, second) => second.getFetchUrlPriority(path) < first.getFetchUrlPriority(path));
   }
 
   /**
-   *
-   * @param {String} path - path to check
-   * @returns {Boolean} result of the check
-   */
-  isExtensionAllowed(path) {
-    const extension = extname(path);
-
-    if (!extension) {
-      return true;
-    }
-
-    if (!this.config.allowedExtensions.includes(extension)) {
-      Logger.debug(`Resolving ${path} with 404 with extension rule. Allowed: ${this.config.allowedExtensions}.`);
-      return false;
-    }
-
-    return true;
-  }
-
-  /**
-   * Fetches url data from remote API. Signature of the method should the the same as signature of GraphQL resolvers
+   * Fetches url data from remote API. Signature of the method must match the signature of GraphQL resolvers
    * @param {Object} obj - result returned from parent query
    * @param {Object} args - object with arguments passed to the query
    * @param {Object} context - execution context
@@ -64,10 +48,6 @@ module.exports = class DynamicRouteExtension extends Extension {
   async fetchUrl(obj, args, context, info) {
     const { path } = args;
 
-    if (!this.isExtensionAllowed(path)) {
-      return;
-    }
-
     let response;
     const resolvers = this.getDynamicRouteHandlers(path);
 
@@ -76,7 +56,7 @@ module.exports = class DynamicRouteExtension extends Extension {
     /* eslint-disable no-continue */
 
     for (const resolver of resolvers) {
-      Logger.debug(`Checking ${resolver.name} api for url: "${path}"...`);
+      Logger.debug(`Checking ${resolver.name} extension for url: "${path}"...`);
 
       try {
         // todo this will produce different cache keys for storeCode / blog entry combination
@@ -109,16 +89,5 @@ module.exports = class DynamicRouteExtension extends Extension {
     }
 
     return response;
-  }
-
-  getGraphQLConfig() {
-    return {
-      schema: readFileSync(resolve(__dirname, './schema.graphql'), 'utf8'),
-      resolvers: {
-        Query: {
-          url: async (...params) => this.fetchUrl(...params)
-        }
-      }
-    };
   }
 };

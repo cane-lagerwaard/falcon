@@ -4,6 +4,12 @@
   "i18n": {
     "ns": ["common", "shop", "post"]
   },
+  "apolloClient": {
+    "httpLink": {
+      "uri": "http://localhost:4000/graphql"
+    },
+    "config": {}
+  },
 
   "menus": {
     "header": [

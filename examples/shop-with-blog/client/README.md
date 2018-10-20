@@ -1,8 +1,12 @@
 # Shop with Blog Example
 
+This is a template which is used by [`create-falcon-app`](https://github.com/deity-io/falcon/tree/master/packages/create-falcon-app) to create shop with blog app.
+
 ## Quick Start
 
-Download the example [or clone the whole project](https://github.com/deity-io/falcon.git):
+The best place to start is to use [`create-falcon-app`](https://github.com/deity-io/falcon/tree/master/packages/create-falcon-app#create-falcon-app). 
+
+Or download the example [or clone the whole project](https://github.com/deity-io/falcon.git):
 
 Install it and run:
 

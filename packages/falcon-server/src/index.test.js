@@ -26,7 +26,7 @@ describe('Falcon Server', () => {
     }
   };
 
-  it('Should handle an incoming request to an API DataSource endpoint', async () => {
+  it('Should handle an incoming request to a custom API DataSource endpoint', async () => {
     const server = new FalconServer(config);
     await server.initialize();
     const serverCallback = server.app.callback();

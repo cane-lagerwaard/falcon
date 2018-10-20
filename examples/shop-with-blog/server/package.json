@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@deity/falcon-blog-extension": "^0.0.2",
-    "@deity/falcon-dynamic-route-extension": "^0.0.2",
     "@deity/falcon-magento2-api": "^0.0.2",
     "@deity/falcon-server": "^0.0.2",
     "@deity/falcon-shop-extension": "^0.0.2",

@@ -10,6 +10,7 @@ const { EventEmitter2 } = require('eventemitter2');
 const { resolve: resolvePath } = require('path');
 const { readFileSync } = require('fs');
 const { codes } = require('@deity/falcon-errors');
+const DynamicRouteResolver = require('./resolvers/DynamicRouteResolver');
 
 const BaseSchema = readFileSync(resolvePath(__dirname, './schema.graphql'), 'utf8');
 
@@ -76,6 +77,7 @@ class FalconServer {
 
   async getApolloServerConfig() {
     const cache = this.getCacheInstance();
+    const dynamicRouteResolver = new DynamicRouteResolver(this.extensionContainer);
 
     const apolloServerConfig = await this.extensionContainer.createGraphQLConfig({
       schemas: [BaseSchema],
@@ -88,6 +90,11 @@ class FalconServer {
         session: ctx.req.session
       }),
       cache,
+      resolvers: {
+        Query: {
+          url: (...params) => dynamicRouteResolver.fetchUrl(...params)
+        }
+      },
       tracing: this.config.debug,
       playground: this.config.debug && {
         settings: {

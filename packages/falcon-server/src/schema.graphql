@@ -20,6 +20,17 @@ type Subscription {
 
 type Query {
   backendConfig: BackendConfig
+  url(path: String!): Url
+}
+
+"""
+Dynamic URL type
+"""
+type Url {
+  id: Int!
+  path: String!
+  type: String!
+  redirect: Boolean
 }
 
 """

@@ -79,13 +79,15 @@ module.exports = class ExtensionContainer {
   async createGraphQLConfig(defaultConfig = {}) {
     const config = Object.assign(
       {
-        resolvers: [],
         schemas: [],
         // contextModifiers will be used as helpers - it will gather all the context functions and we'll invoke
         // all of them when context will be created. All the results will be merged to produce final context
         contextModifiers: defaultConfig.context ? [defaultConfig.context] : []
       },
-      defaultConfig
+      defaultConfig,
+      {
+        resolvers: defaultConfig.resolvers && !Array.isArray(defaultConfig.resolvers) ? [defaultConfig.resolvers] : []
+      }
     );
 
     for (const [extName, ext] of this.extensions) {

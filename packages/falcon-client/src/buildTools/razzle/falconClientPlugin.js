@@ -156,15 +156,15 @@ function addGraphQLTagLoader(config) {
  * @param {boolean} dev is dev?
  * @returns {void}
  */
-function addFalconI18nPlugin({ resourcePackages = [], filter }) {
+function addFalconI18nPlugin(param = { resourcePackages: [], filter: undefined }) {
   return (config, target) => {
     if (target === 'web') {
       config.plugins.unshift(
         new FalconI18nLocalesPlugin({
           mainSource: path.join(paths.razzle.appPath, 'i18n'),
-          defaultSources: resourcePackages.map(x => paths.resolvePackageDir(x)).map(x => path.join(x, 'i18n')),
+          defaultSources: param.resourcePackages.map(x => paths.resolvePackageDir(x)).map(x => path.join(x, 'i18n')),
           output: 'build/i18n',
-          filter
+          filter: param.filter
         })
       );
     }
@@ -236,7 +236,7 @@ function addToNodeExternals(whitelist) {
  * @param {{i18n: i18nPluginConfig }} appConfig webpack config
  * @returns {object} razzle plugin
  */
-module.exports = appConfig => (config, { target, dev }, webpackObject) => {
+module.exports = (appConfig = {}) => (config, { target, dev }, webpackObject) => {
   config.resolve.alias = {
     ...(config.resolve.alias || {}),
     src: paths.razzle.appSrc,
@@ -281,7 +281,11 @@ module.exports = appConfig => (config, { target, dev }, webpackObject) => {
   ])(config, { target, dev });
   excludeIcoFromFileLoader(config);
   addGraphQLTagLoader(config);
-  addFalconI18nPlugin(appConfig.i18n)(config, target);
+
+  if (appConfig.i18n) {
+    addFalconI18nPlugin(appConfig.i18n)(config, target);
+  }
+
   addWebManifest(config, target);
 
   if (target === 'web' && process.env.NODE_ANALYZE) {

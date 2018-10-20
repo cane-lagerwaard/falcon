@@ -104,13 +104,13 @@ module.exports = class Magento2Api extends Magento2ApiBase {
   }
 
   /**
-   * Add suffix to path
+   * Add leading slash and suffix to path
    * @param {string} path - path to convert
    * @return {string} converted path
    * @todo get suffix from Magento2 config
    */
   convertPathToUrl(path) {
-    return `${path}.html`;
+    return path ? `/${path}.html` : path;
   }
 
   /**

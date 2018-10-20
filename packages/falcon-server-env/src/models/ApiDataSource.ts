@@ -6,6 +6,7 @@ import { stringify } from 'qs';
 import { format } from 'url';
 import ContextHTTPCache from '../cache/ContextHTTPCache';
 import {
+  ApiUrlPriority,
   ApiDataSourceConfig,
   ApiDataSourceEndpoint,
   ConfigurableConstructorParams,
@@ -22,7 +23,7 @@ export type PaginationValue = number | string | null;
 export default abstract class ApiDataSource<TContext = any> extends RESTDataSource<TContext> {
   public name: string;
   public config: ApiDataSourceConfig;
-  public fetchUrlPriority: number = 1;
+  public fetchUrlPriority: number = ApiUrlPriority.NORMAL;
   public perPage: number = 10;
 
   /**

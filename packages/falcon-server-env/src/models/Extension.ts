@@ -1,6 +1,6 @@
 import { GraphQLResolveInfo } from 'graphql';
 import ApiDataSource from './ApiDataSource';
-import { ConfigurableConstructorParams, FetchUrlResult, ExtensionContainer } from '../types';
+import { ApiUrlPriority, ConfigurableConstructorParams, FetchUrlResult, ExtensionContainer } from '../types';
 
 export default abstract class Extension<TApiConfig = object> {
   public config: object;
@@ -51,7 +51,7 @@ export default abstract class Extension<TApiConfig = object> {
    * @return {number|null} Priority index or null (if "dynamic URL" is not supported)
    */
   getFetchUrlPriority(url: string): number | null {
-    return this.api && this.api.getFetchUrlPriority ? this.api.getFetchUrlPriority(url) : null;
+    return this.api && this.api.getFetchUrlPriority ? this.api.getFetchUrlPriority(url) : ApiUrlPriority.OFF;
   }
 
   async fetchUrl?(obj: object, args: any, context: any, info: GraphQLResolveInfo): Promise<FetchUrlResult>;

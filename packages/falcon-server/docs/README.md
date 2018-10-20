@@ -11,3 +11,4 @@ Table of contents:
 - [Extension Model](https://github.com/deity-io/falcon/tree/master/packages/falcon-server-env/docs/Extension.md)
   - [Blog Extension](https://github.com/deity-io/falcon/tree/master/packages/falcon-blog-extension/README.md)
   - [Shop Extension](https://github.com/deity-io/falcon/tree/master/packages/falcon-shop-extension/README.md)
+- [DynamicRoute Resolver](./DynamicRouteResolver.md)
