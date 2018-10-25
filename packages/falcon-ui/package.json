@@ -39,7 +39,7 @@
     "@deity/falcon-theme-editor": "^0.0.3",
     "@mdx-js/tag": "0.15.0",
     "@types/deepmerge": "2.1.0",
-    "@types/react": "16.4.16",
+    "@types/react": "16.4.18",
     "@types/react-dom": "16.0.8",
     "babel-plugin-annotate-pure-calls": "0.4.0",
     "babel-plugin-module-resolver": "3.1.1",
