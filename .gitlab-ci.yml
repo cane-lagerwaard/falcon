@@ -9,7 +9,7 @@ before_script:
 .job_template: &job_definition
   stage: test
   cache:
-    key: '$NODE_VERSION-$CI_COMMIT_REF_SLUG'
+    key: '$CI_BUILD_NAME-$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
   script:
