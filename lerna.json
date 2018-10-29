@@ -1,4 +1,5 @@
 {
+  "ignoreChanges": ["**/*.test.js", "**/*.test.ts", "**/*.md"],
   "useWorkspaces": true,
   "npmClient": "yarn",
   "version": "independent"
