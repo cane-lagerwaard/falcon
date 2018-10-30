@@ -1,4 +1,4 @@
-# DEITY FALCON
+# Read Me
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b8b60963bac941f081de64671ae8b7fd)](https://app.codacy.com/app/Deity/falcon?utm_source=github.com&utm_medium=referral&utm_content=deity-io/falcon&utm_campaign=Badge_Grade_Settings) [![Build Status](https://travis-ci.org/deity-io/falcon.svg?branch=master)](https://travis-ci.org/deity-io/falcon) [![License: OSL-3.0](https://img.shields.io/badge/license-OSL--3.0-yellow.svg?style=flat-square)](https://opensource.org/licenses/OSL-3.0) [![Blazing Fast](https://img.shields.io/badge/speed-blazing%20🔥-brightgreen.svg?style=flat-square)](https://twitter.com/acdlite/status/974390255393505280) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=flat-square)](https://lernajs.io/) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
