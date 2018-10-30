@@ -2,7 +2,7 @@
 
 This package delivers base classes and helpers for ApiDataSources and Extensions.
 
-- [API reference](https://github.com/deity-io/falcon/blob/master/packages/falcon-server-env/docs/README.md)
+* [API reference](https://github.com/deity-io/falcon/blob/master/packages/falcon-server-env/docs/README.md)
 
 ## Installation
 
@@ -20,7 +20,7 @@ yarn add @deity/falcon-server-env
 
 ## Usage
 
-To define your own extension (high-level data provider) - you would need to create a new package and export its main class:
+To define your own extension \(high-level data provider\) - you would need to create a new package and export its main class:
 
 ```javascript
 // package.json - "name": "my-custom-falcon-extension"
@@ -51,7 +51,7 @@ module.exports = class CustomExtension extends Extension {
 }
 ```
 
-To define your own API class (low-level data provider) - you would need to create a new package and export its main class:
+To define your own API class \(low-level data provider\) - you would need to create a new package and export its main class:
 
 ```javascript
 // package.json - "name": "my-custom-falcon-api"
@@ -69,9 +69,9 @@ module.exports = class CustomApi extends ApiDataSource {
 }
 ```
 
-Then in your project's config (`server` app) - you need to declare them and assign your API to your Extension:
+Then in your project's config \(`server` app\) - you need to declare them and assign your API to your Extension:
 
-```json
+```javascript
 {
   "apis": [{
     "name": "my-custom-api",
@@ -89,3 +89,4 @@ Then in your project's config (`server` app) - you need to declare them and assi
   }]
 }
 ```
+
