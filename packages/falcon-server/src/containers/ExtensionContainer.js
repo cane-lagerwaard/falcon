@@ -26,41 +26,45 @@ module.exports = class ExtensionContainer {
 
   /**
    * Instantiates extensions based on passed configuration and registers event handlers for them
-   * @param {ExtensionInstanceConfig[]} extensions List of extension configurations
+   * @param {Object<string, ExtensionInstanceConfig>} extensions Key-value list of extension configurations
    * @param {Map<string, ApiDataSource>} dataSources Map of API DataSources
    */
   async registerExtensions(extensions, dataSources) {
-    for (const extension of extensions) {
-      try {
-        const ExtensionClass = require(extension.package); // eslint-disable-line import/no-dynamic-require
-        const extensionInstance = new ExtensionClass({
-          config: extension.config || {},
-          name: extension.package,
-          extensionContainer: this
-        });
+    for (const extKey in extensions) {
+      if (Object.prototype.hasOwnProperty.call(extensions, extKey)) {
+        const extension = extensions[extKey];
 
-        Logger.debug(`ExtensionContainer: "${extensionInstance.name}" added to the list of extensions`);
-        const { api: apiName } = extension.config || {};
-        if (apiName && dataSources.has(apiName)) {
-          extensionInstance.api = dataSources.get(apiName);
-          Logger.debug(
-            `ExtensionContainer: "${apiName}" API DataSource added to Extension "${extensionInstance.name}"`
+        try {
+          const ExtensionClass = require(extension.package); // eslint-disable-line import/no-dynamic-require
+          const extensionInstance = new ExtensionClass({
+            config: extension.config || {},
+            name: extKey,
+            extensionContainer: this
+          });
+
+          Logger.debug(`ExtensionContainer: "${extensionInstance.name}" added to the list of extensions`);
+          const { api: apiName } = extension.config || {};
+          if (apiName && dataSources.has(apiName)) {
+            extensionInstance.api = dataSources.get(apiName);
+            Logger.debug(
+              `ExtensionContainer: "${apiName}" API DataSource added to Extension "${extensionInstance.name}"`
+            );
+          } else {
+            Logger.debug(`ExtensionContainer: Extension "${extensionInstance.name}" has no API defined`);
+          }
+          this.extensions.set(extensionInstance.name, extensionInstance);
+
+          await this.eventEmitter.emitAsync(Events.EXTENSION_REGISTERED, {
+            instance: extensionInstance,
+            name: extensionInstance.name
+          });
+        } catch (ex) {
+          Logger.warn(
+            `ExtensionContainer: "${
+              extension.package
+            }" extension cannot be loaded. Make sure it is installed. Details: ${ex.stack}`
           );
-        } else {
-          Logger.debug(`ExtensionContainer: Extension "${extensionInstance.name}" has no API defined`);
         }
-        this.extensions.set(extensionInstance.name, extensionInstance);
-
-        await this.eventEmitter.emitAsync(Events.EXTENSION_REGISTERED, {
-          instance: extensionInstance,
-          name: extensionInstance.name
-        });
-      } catch (ex) {
-        Logger.warn(
-          `ExtensionContainer: "${extension.package}" extension cannot be loaded. Make sure it is installed. Details: ${
-            ex.stack
-          }`
-        );
       }
     }
   }

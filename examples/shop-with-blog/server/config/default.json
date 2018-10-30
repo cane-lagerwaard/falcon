@@ -3,9 +3,8 @@
   "port": 4000,
   "logLevel": "info",
   "verboseEvents": false,
-  "apis": [
-    {
-      "name": "api-wordpress",
+  "apis": {
+    "api-wordpress": {
       "package": "@deity/falcon-wordpress-api",
       "config": {
         "host": "wordpress.deity.io",
@@ -14,8 +13,7 @@
         "apiSuffix": "/wp/v2"
       }
     },
-    {
-      "name": "api-magento2",
+    "api-magento2": {
       "package": "@deity/falcon-magento2-api",
       "config": {
         "host": "magento.deity.io",
@@ -53,21 +51,21 @@
         }
       }
     }
-  ],
-  "extensions": [
-    {
+  },
+  "extensions": {
+    "blog": {
       "package": "@deity/falcon-blog-extension",
       "config": {
         "api": "api-wordpress"
       }
     },
-    {
+    "shop": {
       "package": "@deity/falcon-shop-extension",
       "config": {
         "api": "api-magento2"
       }
     }
-  ],
+  },
   "session": {
     "keys": ["secret key"],
     "options": {

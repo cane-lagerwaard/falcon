@@ -4,16 +4,20 @@ The main purpose of `ExtensionContainer` is to store, initialize and manage all 
 [`extensions`](https://github.com/deity-io/falcon/blob/master/packages/falcon-server-env/src/models/Extension.ts)
 from the configuration. It also generates main configuration object for ApolloServer instance.
 
-## `new ExtensionContainer(extensions: ExtensionInstanceConfig[], dataSources: Map<string,ApiDataSource>)`
+## `new ExtensionContainer(eventEmitter)`
 
-The constructor expects to receive a list of [`ExtensionInstanceConfig`](#ExtensionInstanceConfig-type) objects and an initialized list of `dataSources` provided
+The constructor expects to receive an instance of EventEmitter.
+
+## `extensionContainer.registerExtensions(extensions: Object<string, ExtensionInstanceConfig>, dataSources: Map<string,ApiDataSource>)`
+
+ list of  objects and an initialized list of `dataSources` provided
 by [`ApiContainer`](./ApiContainer.md).
 
-## `extensionContainer.registerExtensions(extensions: ExtensionInstanceConfig[], dataSources: Map<string,ApiDataSource>)`
-
-This method registers provided extensions into `extensionContainer.extensions` Map.
-Constructor will create a new Map and call this method inside itself, so
-any further manual calls of `registerExtensions` method will add new Extensions to it.
+This method registers the provided extensions
+([`ExtensionInstanceConfig`](#ExtensionInstanceConfig-type)) into
+`extensionContainer.extensions` Map.
+Constructor will create a new Map, so any further manual calls of
+`registerExtensions` method will add new Extensions to it.
 
 `extension.api` will be assigned automatically by `registerExtensions` method based on the
 provided configuration and `dataSources` value.

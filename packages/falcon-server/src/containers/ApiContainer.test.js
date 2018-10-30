@@ -1,7 +1,11 @@
 const { EventEmitter2 } = require('eventemitter2');
 const ApiContainer = require('./ApiContainer');
 
-const apis = [{ package: 'fake-backend-api', name: 'fake-api' }];
+const apis = {
+  'fake-api': {
+    package: 'fake-backend-api'
+  }
+};
 
 describe('ApiContainer', () => {
   let ee;

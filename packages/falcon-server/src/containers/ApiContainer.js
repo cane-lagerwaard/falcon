@@ -30,29 +30,33 @@ module.exports = class ApiContainer {
 
   /**
    * Instantiates apis based on passed configuration
-   * @param {ApiInstanceConfig[]} apis List of APIs configuration
+   * @param {Object<string, ApiInstanceConfig>} apis Key-value list of APIs configuration
    * @return {undefined}
    */
-  async registerApis(apis = []) {
-    for (const api of apis) {
-      const { package: pkg, name, config = {} } = api;
-      try {
-        const ApiClass = require(pkg); // eslint-disable-line import/no-dynamic-require
-        /** @type {ApiDataSource} */
-        const apiInstance = new ApiClass({ config, name });
+  async registerApis(apis = {}) {
+    for (const apiKey in apis) {
+      if (Object.prototype.hasOwnProperty.call(apis, apiKey)) {
+        const api = apis[apiKey];
 
-        Logger.debug(`ApiContainer: "${apiInstance.name}" added to the list of API DataSources`);
-        this.dataSources.set(apiInstance.name, apiInstance);
-        if (apiInstance.getEndpoints) {
-          Logger.debug(`ApiContainer: Extracting endpoints from "${apiInstance.name}" API DataSource`);
-          this.endpoints.push(...apiInstance.getEndpoints());
+        const { package: pkg, config = {} } = api;
+        try {
+          const ApiClass = require(pkg); // eslint-disable-line import/no-dynamic-require
+          /** @type {ApiDataSource} */
+          const apiInstance = new ApiClass({ config, name: apiKey });
+
+          Logger.debug(`ApiContainer: "${apiInstance.name}" added to the list of API DataSources`);
+          this.dataSources.set(apiInstance.name, apiInstance);
+          if (apiInstance.getEndpoints) {
+            Logger.debug(`ApiContainer: Extracting endpoints from "${apiInstance.name}" API DataSource`);
+            this.endpoints.push(...apiInstance.getEndpoints());
+          }
+          await this.eventEmitter.emitAsync(Events.API_DATA_SOURCE_REGISTERED, {
+            instance: apiInstance,
+            name: apiInstance.name
+          });
+        } catch (error) {
+          Logger.warn(`"${pkg}" package cannot be loaded. Make sure it is installed properly. Details: ${error.stack}`);
         }
-        await this.eventEmitter.emitAsync(Events.API_DATA_SOURCE_REGISTERED, {
-          instance: apiInstance,
-          name: apiInstance.name
-        });
-      } catch (error) {
-        Logger.warn(`"${pkg}" package cannot be loaded. Make sure it is installed properly. Details: ${error.stack}`);
       }
     }
   }

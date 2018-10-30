@@ -3,17 +3,17 @@ const { EventEmitter2 } = require('eventemitter2');
 const ExtensionContainer = require('./ExtensionContainer');
 const { BaseSchema } = require('../index');
 
-const extensions = [
-  {
+const extensions = {
+  shop: {
     package: 'fake-shop-extension',
     config: {
       apiUrl: 'https://example.com'
     }
   },
-  {
+  reviews: {
     package: 'fake-product-reviews-extension'
   }
-];
+};
 
 const mocks = {
   Product: () => ({
@@ -42,7 +42,7 @@ describe('ExtensionContainer', () => {
   });
 
   it('Should correctly pass configuration to extensions', () => {
-    expect(container.extensions.get('fake-shop-extension').config.apiUrl).toEqual('https://example.com');
+    expect(container.extensions.get('shop').config.apiUrl).toEqual('https://example.com');
   });
 
   describe('Schema stitching', () => {
