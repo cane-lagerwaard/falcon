@@ -11,5 +11,5 @@ import { Playground } from 'docz'; import { Select, Option } from '../';
 
 ### Basic usage
 
- Choose...LargeMediumSmall
+Choose...LargeMediumSmall
 

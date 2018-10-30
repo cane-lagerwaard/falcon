@@ -11,9 +11,9 @@ import { Playground, PropsTable } from 'docz'; import { State } from 'react-powe
 
 ### Basic usage
 
- {\({ state, setState }\) =&gt; \( {state.tabs.map\(\(tab, index\) =&gt; \( setState\({ activeIndex: index }\)}&gt; {tab} \)\)} \)}
+{\({ state, setState }\) =&gt; \( {state.tabs.map\(\(tab, index\) =&gt; \( setState\({ activeIndex: index }\)}&gt; {tab} \)\)} \)}
 
 ### Variant secondary
 
- {\({ state, setState }\) =&gt; \( {state.tabs.map\(\(tab, index\) =&gt; \( setState\({ activeIndex: index }\)}&gt; {tab} \)\)} \)}
+{\({ state, setState }\) =&gt; \( {state.tabs.map\(\(tab, index\) =&gt; \( setState\({ activeIndex: index }\)}&gt; {tab} \)\)} \)}
 

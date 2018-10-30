@@ -11,5 +11,5 @@ import { Playground } from 'docz'; import { Label, Input, Box } from '../';
 
 ### Basic usage
 
- Name 
+Name
 

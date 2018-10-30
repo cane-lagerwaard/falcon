@@ -13,5 +13,5 @@ import { Portal, Button } from '../'; import { PropsTable } from '../../docs';
 
 ### Basic usage
 
- Hello!  Secondary
+Hello! Secondary
 

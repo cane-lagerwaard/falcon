@@ -66,12 +66,4 @@
 * [examples](examples/README.md)
   * [shop-with-blog](examples/shop-with-blog/README.md)
     * [Shop with Blog Example](examples/shop-with-blog/client.md)
-* [.github](.github/README.md)
-  * [ISSUE\_TEMPLATE](.github/issue_template/README.md)
-    * [feature\_request](.github/issue_template/feature_request.md)
-    * [bug\_report](.github/issue_template/bug_report.md)
-    * [improvement-request](.github/issue_template/improvement-request.md)
-  * [Contributor Covenant Code of Conduct](.github/code_of_conduct.md)
-  * [Contributing to Deity Falcon](.github/contributing.md)
-  * [Please check if the PR fulfills these requirements](.github/pull_request_template.md)
 

@@ -15,5 +15,5 @@ import { Playground } from 'docz'; import { Value } from 'react-powerplug'; impo
 
 #### Controlled:
 
- {\({ value, set }\) =&gt; \(set\(e.target.value\)} /&gt; \)}
+{\({ value, set }\) =&gt; \(set\(e.target.value\)} /&gt; \)}
 

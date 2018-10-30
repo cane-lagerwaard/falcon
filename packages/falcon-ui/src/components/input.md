@@ -11,5 +11,7 @@ import { Playground } from 'docz'; import { Input, Box, Label } from '../';
 
 ### Basic usage
 
-    As textarea: 
+```text
+As textarea: 
+```
 

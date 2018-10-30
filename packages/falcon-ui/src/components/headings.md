@@ -11,11 +11,11 @@ import { Playground } from 'docz'; import { H1, H2, H3, H4 } from '../';
 
 #### Basic usage
 
-##  Heading H1
+## Heading H1
 
-###  Heading H2
+### Heading H2
 
-####  Heading H3
+#### Heading H3
 
- **Heading H4**
+**Heading H4**
 

@@ -11,9 +11,9 @@ import { Playground } from 'docz'; import { State, Toggle } from 'react-powerplu
 
 ### Example usage as accordion
 
- {\({ setState, state }\) =&gt; \( {state.items.map\(\(item, index\) =&gt; \( { e.preventDefault\(\); setState\(state =&gt; \({ activeIndex: state.activeIndex === index ? -1 : index }\)\); }} &gt; {item.title}{item.description} \)\)} \)}
+{\({ setState, state }\) =&gt; \( {state.items.map\(\(item, index\) =&gt; \( { e.preventDefault\(\); setState\(state =&gt; \({ activeIndex: state.activeIndex === index ? -1 : index }\)\); }} &gt; {item.title}{item.description} \)\)} \)}
 
 ### Example usage with multiple items that opened at once
 
- {\({ state }\) =&gt; \( {state.items.map\(\(item, index\) =&gt; \( {\({ on, toggle }\) =&gt; \( { e.preventDefault\(\); toggle\(\);}}&gt; {item.title}{item.description} \)} \)\)} \)}
+{\({ state }\) =&gt; \( {state.items.map\(\(item, index\) =&gt; \( {\({ on, toggle }\) =&gt; \( { e.preventDefault\(\); toggle\(\);}}&gt; {item.title}{item.description} \)} \)\)} \)}
 

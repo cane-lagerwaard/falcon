@@ -11,5 +11,5 @@ import { Playground } from 'docz'; import { Value } from 'react-powerplug'; impo
 
 ### Basic usage
 
- {\({ value, set }\) =&gt; \( Sort by: {value} Ascending Descending \)}
+{\({ value, set }\) =&gt; \( Sort by: {value} Ascending Descending \)}
 

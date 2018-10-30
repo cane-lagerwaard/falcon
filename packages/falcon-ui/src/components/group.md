@@ -13,5 +13,5 @@ Group componet gives visual unity to elements that work together. It only adjust
 
 ### Basic usage
 
- Option 1 Option 2 Option 3 Option 1 Option 2
+Option 1 Option 2 Option 3 Option 1 Option 2
 

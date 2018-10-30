@@ -11,9 +11,9 @@ import { Playground } from 'docz'; import { Toggle } from 'react-powerplug'; imp
 
 ### Basic usage
 
- {\({ on, toggle }\) =&gt; \( Toggle sidebar
+{\({ on, toggle }\) =&gt; \( Toggle sidebar
 
 ## Hello!
 
- \)}
+\)}
 

@@ -11,5 +11,5 @@ import { Playground } from 'docz'; import { Button, GridLayout } from '../';
 
 ### Basic usage
 
- Hello!  Secondary
+Hello! Secondary
 
