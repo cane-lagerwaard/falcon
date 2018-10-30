@@ -2,6 +2,7 @@
 
 * [DEITY FALCON](README.md)
 * [Introduction](introduction.md)
+* [Requirements](requirements.md)
 * [packages](packages/README.md)
   * [Falcon i18n](packages/falcon-i18n.md)
   * [falcon-ui](packages/falcon-ui/README.md)
