@@ -9,6 +9,7 @@ before_script:
 
 .job_template: &job_definition
   stage: test
+  retry: 3
   cache:
     key: '$CI_BUILD_NAME-$CI_COMMIT_REF_SLUG'
     paths:
