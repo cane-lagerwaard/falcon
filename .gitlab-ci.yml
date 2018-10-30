@@ -34,4 +34,4 @@ Publish nightly build:
       - $NIGHTLY_BUILD
   script:
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-    - yarn lerna publish -c patch --no-git-tag-version --no-push --npm-tag nightly --preid nightly.$(date +%Y%m%d)
+    - yarn lerna publish -c patch --no-git-tag-version --no-push --npm-tag nightly --yes --preid nightly.$(date +%Y%m%d)
