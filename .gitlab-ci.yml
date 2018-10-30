@@ -26,11 +26,12 @@ Node 10:
   <<: *job_definition
   image: node:10-alpine
 
-Push nightly build:
+Publish nightly build:
+  stage: build
+  image: node:8-alpine
   only:
     variables:
       - $NIGHTLY_BUILD
-  stage: build
-  image: node:8-alpine
   script:
-    - yarn lerna publish -c patch --npm-client yarn --no-git-tag-version --no-push --preid nightly.$(date +%Y%m%d)
+    - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+    - yarn lerna publish -c patch --no-git-tag-version --no-push --npm-tag nightly --preid nightly.$(date +%Y%m%d)
