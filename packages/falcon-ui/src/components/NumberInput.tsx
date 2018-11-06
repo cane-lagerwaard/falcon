@@ -82,13 +82,13 @@ class NumberInputInnerDOM extends React.Component<
 
     return (
       <Box {...themableProps} className={className}>
-        <button aria-hidden onClick={this.stepDown} className="-inner-input-step-down-element">
+        <button type="button" aria-hidden onClick={this.stepDown} className="-inner-input-step-down-element">
           <Icon src="numberInputDown" fallback="−" />
         </button>
 
         <input ref={this.inputRef} min={5} type="number" {...rest} />
 
-        <button aria-hidden onClick={this.stepUp} className="-inner-input-step-up-element">
+        <button type="button" aria-hidden onClick={this.stepUp} className="-inner-input-step-up-element">
           <Icon src="numberInputUp" fallback="+" />
         </button>
       </Box>
@@ -99,26 +99,28 @@ class NumberInputInnerDOM extends React.Component<
 export const NumberInput = themed({
   tag: NumberInputInnerDOM,
 
+  defaultProps: {
+    readOnly: true
+  },
+
   defaultTheme: {
     numberInput: {
-      height: 30,
-      width: 120,
-      css: ({ theme }) => ({
-        display: 'inline-flex',
-        alignItems: 'center',
+      display: 'inline-flex',
+      alignItems: 'center',
+      height: 'lg',
 
+      css: ({ theme }) => ({
         input: {
-          flex: 1,
-          minWidth: 0,
+          flex: 'none',
+          width: theme.spacing.lg,
+          height: '100%',
           appearance: 'none',
           MozAppearance: 'textfield',
-          pointerEvents: 'none',
           userSelect: 'none',
-          height: '100%',
           fontStyle: 'inherit',
-          border: theme.borders.light,
-          borderColor: theme.colors.primaryDark,
-          borderRadius: theme.borderRadius.xs,
+          border: theme.borders.regular,
+          borderColor: theme.colors.secondaryDark,
+          borderRadius: theme.borderRadius.medium,
           textAlign: 'center',
           boxShadow: 'none',
           '::-webkit-outer-spin-button,::-webkit-inner-spin-button': {
@@ -127,34 +129,37 @@ export const NumberInput = themed({
         },
 
         '.-inner-input-step-down-element, .-inner-input-step-up-element': {
-          width: '28%',
           height: '100%',
-          transform: 'scale(0.8)',
+          flex: 'none',
+          width: theme.spacing.lg,
           border: 'none',
           outline: 'none',
           appearance: 'none',
           transitionProperty: 'transform, background',
           transitionTimingFunction: theme.easingFunctions.easeIn,
           transitionDuration: theme.transitionDurations.short,
-          background: theme.colors.primaryDark,
-          color: theme.colors.primaryText,
-          borderRadius: theme.borderRadius.xl,
+          background: theme.colors.secondaryDark,
+          color: theme.colors.secondaryText,
+          borderRadius: theme.borderRadius.round,
           fontWeight: theme.fontWeights.bold,
           fontSize: 'inherit',
           cursor: 'pointer',
-
+          display: 'flex',
+          justifyContent: 'center',
+          transform: 'scale(0.8)',
+          lineHeight: 1,
           ':hover': {
-            background: theme.colors.primary
+            background: theme.colors.secondary
           }
         },
         '.-inner-input-step-down-element': {
-          marginRight: theme.spacing.sm,
+          marginRight: theme.spacing.xs,
           ':active': {
             transform: 'scale(0.6)'
           }
         },
         '.-inner-input-step-up-element': {
-          marginLeft: theme.spacing.sm,
+          marginLeft: theme.spacing.xs,
           ':active': {
             transform: 'scale(1)'
           }

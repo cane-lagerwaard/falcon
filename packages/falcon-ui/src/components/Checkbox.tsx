@@ -1,37 +1,51 @@
 import React from 'react';
-import { themed, extractThemableProps } from '../theme';
-import { Box } from './Box';
+import { themed } from '../theme';
 import { Icon } from './Icon';
 
 const CheckboxInnerDOM = (
-  props: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+  props: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & { icon: JSX.Element }
 ) => {
-  const { className, ...remaining } = props;
-  const { themableProps, rest } = extractThemableProps(remaining);
+  const { className, icon, ...rest } = props;
 
   return (
-    <Box {...themableProps} className={className}>
+    <div className={className}>
       <input {...rest} type="checkbox" />
       <div aria-hidden className="-inner-checkbox-frame">
-        <Icon
-          src="checkboxCheckedIcon"
-          className="-inner-checkbox-icon"
-          fallback={
-            <svg className="-inner-checkbox-icon" viewBox="0 0 24 24">
-              <path fill="none" d="M6,11.3 L10.3,16 L18,6.2" />
-            </svg>
-          }
-        />
+        {icon}
       </div>
-    </Box>
+    </div>
   );
 };
+
 export const Checkbox = themed({
   tag: CheckboxInnerDOM,
 
+  defaultProps: {
+    icon: (
+      <Icon
+        src="checkboxCheckmarkIcon"
+        className="-inner-checkbox-icon"
+        fallback={
+          <svg
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="-inner-checkbox-icon"
+            fill="none"
+            focusable="false"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        }
+      />
+    )
+  },
+
   defaultTheme: {
     checkbox: {
-      size: 24,
+      size: 'md',
+
       css: ({ theme }) => ({
         display: 'inline-flex',
         position: 'relative',
@@ -46,17 +60,19 @@ export const Checkbox = themed({
           opacity: 0,
           zIndex: 1,
           ':checked + .-inner-checkbox-frame': {
-            background: theme.colors.secondary,
-            borderColor: theme.colors.secondary,
+            background: theme.colors.primary,
+            borderColor: theme.colors.primary,
             '.-inner-checkbox-icon': {
               opacity: 1
             }
           },
+
           ':hover + .-inner-checkbox-frame': {
-            borderColor: theme.colors.secondaryLight
+            borderColor: theme.colors.primaryLight
           },
+
           ':checked:hover + .-inner-checkbox-frame': {
-            background: theme.colors.secondaryLight
+            background: theme.colors.primaryLight
           }
         },
 
@@ -64,12 +80,10 @@ export const Checkbox = themed({
           height: '100%',
           width: '100%',
           stroke: theme.colors.white,
-          strokeWidth: 3,
           opacity: 0,
           transitionProperty: 'opacity',
           transitionTimingFunction: theme.easingFunctions.easeIn,
-          transitionDuration: theme.transitionDurations.short,
-          transform: 'scale(1.2)'
+          transitionDuration: theme.transitionDurations.short
         },
 
         '.-inner-checkbox-frame': {
@@ -77,10 +91,12 @@ export const Checkbox = themed({
           width: '100%',
           position: 'relative',
           display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
           cursor: 'pointer',
-          borderRadius: theme.borderRadius.xs,
+          borderRadius: theme.borderRadius.small,
           border: theme.borders.bold,
-          borderColor: theme.colors.primaryDark,
+          borderColor: theme.colors.secondaryDark,
           transitionProperty: 'border, background',
           transitionTimingFunction: theme.easingFunctions.easeIn,
           transitionDuration: theme.transitionDurations.short

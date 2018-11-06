@@ -4,11 +4,16 @@ menu: Components
 ---
 
 import { Playground } from 'docz';
-import { List, ListItem } from '../';
+import { ThemePreview } from 'docs';
+import { List, ListItem } from '@deity/falcon-ui';
 
-# List
+<ThemePreview of={[List, ListItem]} />
 
-### Basic usage
+`List` and `ListItem` components by default render as `<ul>` and `<li>` tags and accept all of the [responsive, theme-based style props](/responsive-props).
+
+```javascript
+import { List, ListItem } from '@deity/falcon-ui';
+```
 
 <Playground>
   <List>
@@ -17,3 +22,4 @@ import { List, ListItem } from '../';
     <ListItem>Last</ListItem>
   </List>
 </Playground>
+

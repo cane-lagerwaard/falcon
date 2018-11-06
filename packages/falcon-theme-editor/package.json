@@ -13,9 +13,9 @@
     "src"
   ],
   "peerDependencies": {
-    "@deity/falcon-ui": "0.0.1",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "@deity/falcon-ui": "^0.0.2",
+    "react": "~16.4.2",
+    "react-dom": "~16.4.2"
   },
   "scripts": {
     "clean": "rimraf dist",
@@ -34,12 +34,13 @@
     "@babel/preset-env": "7.1.0",
     "@babel/preset-react": "7.0.0",
     "@babel/preset-typescript": "7.1.0",
-    "@types/react": "16.4.16",
-    "@types/react-dom": "16.0.8",
+    "@types/react": "16.4.18",
+    "@types/react-dom": "16.0.9",
+    "@types/stringify-object": "^3.2.0",
     "babel-plugin-annotate-pure-calls": "0.4.0",
     "babel-plugin-module-resolver": "3.1.1",
-    "react": "16.5.2",
-    "react-dom": "16.5.2",
+    "react": "~16.4.2",
+    "react-dom": "~16.4.2",
     "rimraf": "2.6.2",
     "rollup": "0.66.4",
     "rollup-plugin-babel": "4.0.3",
@@ -48,6 +49,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
+    "deep-object-diff": "^1.1.0",
+    "stringify-object": "^3.2.2",
     "webfontloader": "^1.6.28"
   },
   "gitHead": "d8cd5eede81220aa29563275dcf35448611cc194"

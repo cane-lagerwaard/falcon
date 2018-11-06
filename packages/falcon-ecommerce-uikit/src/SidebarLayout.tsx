@@ -5,16 +5,17 @@ export const SidebarLayout = themed({
 
   defaultTheme: {
     sidebarLayout: {
-      width: {
-        xs: '80vw',
-        sm: 510
-      },
-
       px: {
-        xs: 'md',
-        md: 'lg'
+        xs: 'sm',
+        md: 'md'
       },
-      py: 'md'
+      py: 'sm',
+      css: {
+        width: {
+          xs: '80vw',
+          sm: 510
+        }
+      }
     }
   }
 });

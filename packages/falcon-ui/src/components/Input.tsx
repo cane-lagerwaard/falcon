@@ -19,20 +19,20 @@ export const Input = themed({
 
   defaultTheme: {
     input: {
-      py: 'sm',
-      px: 'md',
+      py: 'xs',
+      px: 'sm',
       border: 'regular',
-      borderRadius: 'xl',
+      borderRadius: 'medium',
 
       css: ({ invalid, theme }) => ({
         ...placeholder({
-          color: theme.colors.primaryText
+          color: theme.colors.secondaryText
         }),
         ':focus': {
           outline: 'none',
           borderColor: invalid ? theme.colors.error : theme.colors.secondary
         },
-        borderColor: invalid ? theme.colors.error : theme.colors.primaryDark,
+        borderColor: invalid ? theme.colors.error : theme.colors.secondaryDark,
         fontFamily: 'inherit',
         lineHeight: 'inherit',
         color: 'inherit',

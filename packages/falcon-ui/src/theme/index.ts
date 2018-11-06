@@ -1,7 +1,7 @@
 import CSS from 'csstype';
 import { defaultBaseTheme } from './theme';
 
-import { PropsMappings } from './propsmapings';
+import { PropsMappings } from './responsiveprops';
 import { mergeThemes } from './utils';
 
 export function createTheme(themeOverride: RecursivePartial<Theme> = {}): Theme {
@@ -12,6 +12,8 @@ export function createTheme(themeOverride: RecursivePartial<Theme> = {}): Theme 
 export * from './themed';
 
 export * from './utils';
+
+export * from './responsiveprops';
 
 // --- exported type definitions for theme  ----
 export interface Theme {
@@ -34,7 +36,7 @@ export interface Theme {
 }
 export type ThemedIcons = {
   [name: string]: {
-    icon: React.ComponentType;
+    icon: React.ComponentType | ((props: any) => JSX.Element);
   } & ThemedComponentProps;
 };
 

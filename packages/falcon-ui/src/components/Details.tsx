@@ -9,10 +9,10 @@ export const Details = themed({
 
   defaultTheme: {
     details: {
-      css: props => ({
-        display: 'flex',
-        flexDirection: 'column',
+      display: 'flex',
+      flexDirection: 'column',
 
+      css: props => ({
         '> :not(summary)': {
           display: props.open ? 'block' : 'none',
           flex: props.open ? '1' : 0
@@ -26,10 +26,10 @@ export const Details = themed({
           display: 'block',
           content: props.open ? '"-"' : '"+"',
           marginLeft: props.theme.spacing.sm,
-          fontSize: props.theme.fontSizes.lg,
+          fontSize: props.theme.fontSizes.md,
           lineHeight: 0.6,
           fontWeight: props.theme.fontWeights.bold,
-          color: props.theme.colors.primaryText
+          color: props.theme.colors.secondaryText
         }
       })
     }
@@ -41,13 +41,14 @@ export const Summary = themed({
 
   defaultTheme: {
     summary: {
-      fontSize: 'md',
-      py: 'sm',
-      px: 'md',
+      fontSize: 'sm',
+      py: 'xs',
+      px: 'sm',
       mb: 'xs',
-      bg: 'primary',
+      bg: 'secondaryLight',
       lineHeight: 'small',
-      borderRadius: 'md',
+      borderRadius: 'medium',
+
       css: {
         outline: 'none',
         userSelect: 'none',
@@ -65,8 +66,8 @@ export const DetailsContent = themed({
 
   defaultTheme: {
     detailsContent: {
-      py: 'md',
-      pl: 'md'
+      py: 'xs',
+      pl: 'xs'
     }
   }
 });

@@ -21,11 +21,12 @@ export const RangeInput = themed({
 
   defaultTheme: {
     rangeInput: {
+      height: 'xs',
       css: ({ theme }) => ({
         background: 'transparent',
         width: '100%',
         WebkitAppearance: 'none',
-        height: theme.spacing.md,
+
         ':focus': {
           outline: 'none'
         },
@@ -35,18 +36,18 @@ export const RangeInput = themed({
           display: 'flex',
           alignItems: 'center',
           border: 'none',
-          borderRadius: theme.borderRadius.xs,
-          height: theme.spacing.xs,
-          background: theme.colors.primary
+          borderRadius: theme.borderRadius.medium,
+          height: '50%',
+          background: theme.colors.secondary
         }),
         ...rangeInputThumb({
           WebkitAppearance: 'none',
           cursor: 'pointer',
           border: 'none',
-          borderRadius: theme.borderRadius.xl,
-          background: theme.colors.secondary,
-          height: theme.spacing.md,
-          width: theme.spacing.md,
+          borderRadius: theme.borderRadius.round,
+          background: theme.colors.primary,
+          height: theme.spacing.sm,
+          width: theme.spacing.sm,
           transition: 'transform',
           transitionTimingFunction: theme.easingFunctions.easeIn,
           transitionDuration: theme.transitionDurations.short

@@ -2,7 +2,7 @@ import React from 'react';
 import { withCSSContext } from '@emotion/core';
 import { themed, PropsWithTheme, BaseProps, ThemedComponentProps } from '../theme';
 
-const IconRenderer = themed({
+export const IconRenderer = themed({
   tag: 'svg',
 
   defaultProps: {
@@ -12,18 +12,18 @@ const IconRenderer = themed({
 
   defaultTheme: {
     icon: {
-      size: 32,
-      stroke: 'secondary'
+      size: 'lg',
+      stroke: 'primary'
     }
   }
 });
 
-type IconProps = { src: string; fallback?: React.ReactNode } & ThemedComponentProps & BaseProps<'svg'>;
+type IconProps = { src: string; fallback?: any } & ThemedComponentProps & BaseProps<'svg'>;
 
-export const Icon = withCSSContext((props: IconProps, context: PropsWithTheme) => {
-  if (!context.theme || !context.theme.icons) return null;
+const IconComponent: React.SFC<IconProps & PropsWithTheme> = props => {
+  if (!props.theme || !props.theme.icons) return null;
 
-  const { icons } = context.theme;
+  const { icons } = props.theme;
   const { src, fallback, ...rest } = props;
 
   if (!props.src || !icons[src]) {
@@ -33,4 +33,8 @@ export const Icon = withCSSContext((props: IconProps, context: PropsWithTheme) =
   const { icon, ...otherProps } = icons[src];
 
   return <IconRenderer as={icon} {...otherProps as any} {...rest} />;
-}) as (props: IconProps) => JSX.Element;
+};
+
+export const Icon = withCSSContext((props: IconProps, context: PropsWithTheme) => (
+  <IconComponent {...props} theme={context.theme} />
+)) as React.SFC<IconProps>;

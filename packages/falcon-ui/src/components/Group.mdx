@@ -4,14 +4,16 @@ menu: Components
 ---
 
 import { Playground } from 'docz';
-import { Button, Group } from '../';
+import { ThemePreview } from 'docs';
+import { Button, Group } from '@deity/falcon-ui';
 
-# Group
+<ThemePreview of={Group} />
 
-Group componet gives visual unity to elements that work together.
-It only adjusts border-radius of its children and removes box shadow from them.
+`Group` componet adjusts border-radius of its children giving them more visual unity.
 
-### Basic usage
+```javascript
+import { Group } from '@deity/falcon-ui';
+```
 
 <Playground>
   <Group mb="lg">

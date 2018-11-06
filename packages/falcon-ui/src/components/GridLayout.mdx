@@ -4,32 +4,33 @@ menu: Components
 ---
 
 import { Playground } from 'docz';
+import { ThemePreview } from 'docs';
+import { GridLayout, Box } from '@deity/falcon-ui';
 
-import { GridLayout, Box } from '../';
+<ThemePreview of={GridLayout} />
 
-# Grid Layout
+`GridLayout` component is rendered by default as a `<div>` with `display: grid` ([CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)) and accepts other [responsive, theme-based style props](/responsive-props) such as (`gridTemplateColumns`, `gridTemplateColumns` etc).
 
-### Basic usage
+```javascript
+import { GridLayout } from '@deity/falcon-ui';
+```
 
 <Playground>
-  <GridLayout gridTemplateColumns={{ xs: '1fr 2fr', md: '1fr 1fr 1fr' }} gridTemplateRows="1fr 50vh 1fr">
-    <Box boxShadow="xs" p="md">
+  <GridLayout gridTemplateColumns="1fr 2fr" gridTemplateRows="10vh 20vh 10vh">
+    <Box boxShadow="subtle" p="md">
       c 1
     </Box>
-    <Box boxShadow="xs" p="md">
+    <Box boxShadow="subtle" p="md">
       c 2
     </Box>
-    <Box boxShadow="xs" p="md">
+    <Box boxShadow="subtle" p="md" gridRow="2/4">
       c 3
     </Box>
-    <Box boxShadow="xs" p="md">
+    <Box boxShadow="subtle" p="md">
       c 4
     </Box>
-    <Box boxShadow="xs" p="md">
+    <Box boxShadow="subtle" p="md">
       c 5
-    </Box>
-    <Box boxShadow="xs" p="md">
-      c 6
     </Box>
   </GridLayout>
 </Playground>

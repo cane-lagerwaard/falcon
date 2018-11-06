@@ -7,6 +7,7 @@ yarn.lock
 yarn-error.log
 package-lock.json
 yarn-error.log
+.npmrc
 
 .vscode/
 */**/jsconfig.json
@@ -14,6 +15,7 @@ yarn-error.log
 .vimrc
 *.swp
 *.swo
+
 
 packages/**/dist/
 examples/**/build/

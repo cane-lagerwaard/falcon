@@ -3,13 +3,18 @@ name: Tabs
 menu: Components
 ---
 
-import { Playground, PropsTable } from 'docz';
+import { Playground } from 'docz';
 import { State } from 'react-powerplug';
-import { Tabs, Tab } from '../';
+import { ThemePreview, CustomPropsTable } from 'docs';
+import { Tabs, Tab, Text } from '@deity/falcon-ui';
 
-# Tabs
+<ThemePreview of={[Tabs, Tab]} />
 
-### Basic usage 
+`Tabs` and `Tab` components by default render as `<ul>` and `<li>` elements and ship with `secondary` variant.
+
+```javascript
+import { Tabs, Tab } from '@deity/falcon-ui';
+```
 
 <Playground>
   <State initial={{ activeIndex: 0, tabs: ['One', 'Two', 'Three'] }}>
@@ -23,11 +28,9 @@ import { Tabs, Tab } from '../';
       </Tabs>
     )}
   </State>
-</Playground>
 
-### Variant secondary
+  <Text mt="xxxl" mb="xs">Variant: secondary</Text>
 
-<Playground>
   <State initial={{ activeIndex: 0, tabs: ['One', 'Two', 'Three'] }}>
     {({ state, setState }) => (
       <Tabs variant="secondary">
@@ -40,3 +43,14 @@ import { Tabs, Tab } from '../';
     )}
   </State>
 </Playground>
+
+<CustomPropsTable componentName="Tab" props={[{
+  name: 'active',
+  type: 'boolean',
+  required: true,
+  defaultValue: 'false',
+  description: 'if true tab gets visual active state'
+  }]}
+ />
+
+ Both `Tabs` and `Tab` components accept also all of the [responsive, theme-based style props](/responsive-props).

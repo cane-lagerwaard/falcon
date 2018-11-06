@@ -6,14 +6,14 @@ import { Icon } from './Icon';
 const RadioInnerDOM = (
   props: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & { icon: JSX.Element }
 ) => {
-  const { className, ...remaining } = props;
+  const { className, icon, ...remaining } = props;
   const { themableProps, rest } = extractThemableProps(remaining);
 
   return (
     <Box {...themableProps} className={className}>
       <input {...rest} type="radio" />
       <div aria-hidden className="-inner-radio-frame">
-        {props.icon}
+        {icon}
       </div>
     </Box>
   );
@@ -23,12 +23,23 @@ export const Radio = themed({
   tag: RadioInnerDOM,
 
   defaultProps: {
-    icon: <Icon className="-inner-radio-icon" src="radioCheckedIcon" fallback={<i className="-inner-radio-icon" />} />
+    icon: (
+      <Icon
+        className="-inner-radio-icon"
+        src="radioCheckedIcon"
+        fallback={
+          <svg viewBox="0 0 24 24" className="-inner-radio-icon" focusable="false">
+            <circle cx="12" cy="12" r="10" />
+          </svg>
+        }
+      />
+    )
   },
 
   defaultTheme: {
     radio: {
-      size: 24,
+      size: 'md',
+
       css: ({ theme }) => ({
         display: 'inline-flex',
         position: 'relative',
@@ -43,16 +54,16 @@ export const Radio = themed({
           opacity: 0,
           zIndex: 1,
           ':checked + .-inner-radio-frame': {
-            borderColor: theme.colors.secondary,
+            borderColor: theme.colors.primary,
             '.-inner-radio-icon': {
               opacity: 1,
-              background: theme.colors.secondary
+              fill: theme.colors.primary
             }
           },
           ':hover + .-inner-radio-frame': {
-            borderColor: theme.colors.secondaryLight,
+            borderColor: theme.colors.primaryLight,
             '.-inner-radio-icon': {
-              background: theme.colors.secondaryLight
+              fill: theme.colors.primaryLight
             }
           }
         },
@@ -62,9 +73,9 @@ export const Radio = themed({
           width: 'calc(100% - 4px)',
           display: 'block',
           opacity: 0,
-          background: theme.colors.white,
-          borderRadius: theme.borderRadius.xl,
-          transitionProperty: 'opacity, background',
+          stroke: 'none',
+          fill: theme.colors.white,
+          transitionProperty: 'opacity, fill',
           transitionTimingFunction: theme.easingFunctions.easeIn,
           transitionDuration: theme.transitionDurations.short
         },
@@ -75,10 +86,10 @@ export const Radio = themed({
           position: 'relative',
           display: 'flex',
           cursor: 'pointer',
-          borderRadius: theme.borderRadius.xl,
+          borderRadius: theme.borderRadius.round,
           border: theme.borders.bold,
-          borderColor: theme.colors.primaryDark,
-          transitionProperty: 'border, background',
+          borderColor: theme.colors.secondaryDark,
+          transitionProperty: 'border, fill',
           transitionTimingFunction: theme.easingFunctions.easeIn,
           transitionDuration: theme.transitionDurations.short,
           justifyContent: 'center',

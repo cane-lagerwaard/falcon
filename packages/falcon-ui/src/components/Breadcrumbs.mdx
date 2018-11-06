@@ -4,11 +4,16 @@ menu: Components
 ---
 
 import { Playground } from 'docz';
-import { Breadcrumbs, Breadcrumb, Link } from '../';
+import { ThemePreview, themeWithCustomBreadcrumbSeparator } from 'docs';
+import { Breadcrumbs, Breadcrumb, Link, ThemeProvider } from '@deity/falcon-ui';
 
-# Breadcrumbs
+<ThemePreview of={[Breadcrumbs, Breadcrumb]} />
 
-### Basic usage
+Both `Breadcrumb` and `Breadcrumbs` components accept all of the [responsive, theme-based style props](/responsive-props) that allow further styling customizations.
+
+ ```javascript
+import { Breadcrumbs, Breadcrumb } from '@deity/falcon-ui';
+```
 
 <Playground>
   <Breadcrumbs>
@@ -21,11 +26,38 @@ import { Breadcrumbs, Breadcrumb, Link } from '../';
     <Breadcrumb>
       <Link>Three</Link>
     </Breadcrumb>
-    <Breadcrumb>
-      <Link>Four</Link>
-    </Breadcrumb>
-    <Breadcrumb current>
-      <Link>Five</Link>
-    </Breadcrumb>
   </Breadcrumbs>
 </Playground>
+
+`Breadcrumb`'s default separator is implemented as CSS [::after](https://developer.mozilla.org/en-US/docs/Web/CSS/::after) pseudo element and
+ can be easily changed via custom theme provided to `ThemeProvider`.
+
+<Playground>
+  <ThemeProvider theme={themeWithCustomBreadcrumbSeparator}>
+    <Breadcrumbs>
+      <Breadcrumb>
+        <Link>One</Link>
+      </Breadcrumb>
+      <Breadcrumb>
+        <Link>Two</Link>
+      </Breadcrumb>
+      <Breadcrumb>
+        <Link>Three</Link>
+      </Breadcrumb>
+    </Breadcrumbs>
+  </ThemeProvider>
+</Playground>
+
+```javascript
+const themeWithCustomBreadcrumbSeparator = createTheme({
+  components: {
+    breadcrumb: {
+      css: {
+        '::after': {
+          content: '"/"'
+        }
+      }
+    }
+  }
+});
+```

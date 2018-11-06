@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 import { Query } from '../Query/Query';
 
-export const GET_PRODUCTS = gql`
-  query GET_PRODUCTS($categoryId: Int!, $page: Int = 1) {
+export const GET_CATEGORY_PRODUCTS = gql`
+  query CategoryProducts($categoryId: Int!, $page: Int = 1) {
     category(id: $categoryId) {
       name
     }
@@ -34,7 +34,7 @@ export const fetchMore = (data: any, apolloFetchMore: any) =>
     variables: {
       page: data.products.pagination.nextPage
     },
-    updateQuery: (prev: any, { fetchMoreResult }: { fetchMoreResult: any }) => {
+    updateQuery: (prev: any, { fetchMoreResult }: any) => {
       if (!fetchMoreResult) {
         return prev;
       }
@@ -72,7 +72,7 @@ function getTranslations(t: reactI18Next.TranslationFunction, data: any) {
 
 export class CategoryQuery extends Query<any> {
   static defaultProps = {
-    query: GET_PRODUCTS,
+    query: GET_CATEGORY_PRODUCTS,
     fetchMore,
     notifyOnNetworkStatusChange: true,
     getTranslations,

@@ -8,7 +8,7 @@ export const Root = themed({
       fontFamily: 'sans',
       fontSize: 'sm',
       lineHeight: 'default',
-      color: 'primaryText',
+      color: 'black',
       css: {
         overflowX: 'hidden',
         '*': {

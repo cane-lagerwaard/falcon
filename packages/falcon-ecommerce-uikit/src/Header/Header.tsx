@@ -13,14 +13,14 @@ import {
 } from '@deity/falcon-ui';
 
 import { toGridTemplate } from '../helpers';
-import { ToggleMiniCartMutation } from '../MiniCart';
+import { ToggleMiniCartMutation, MiniCartIcon, MiniCartQuery } from '../MiniCart';
 import { HeaderData, MenuItem } from './HeaderQuery';
 
 const bannerLayoutTheme: DefaultThemeProps = {
   bannerLayout: {
     display: 'flex',
     justifyContent: 'flex-end',
-    bgFullWidth: 'primaryLight',
+    bgFullWidth: 'secondaryLight',
     m: 'none',
     p: 'none',
     css: {
@@ -32,7 +32,7 @@ const bannerLayoutTheme: DefaultThemeProps = {
 export const Banner: React.SFC<{ items: MenuItem[] }> = ({ items }) => (
   <List defaultTheme={bannerLayoutTheme}>
     {items.map(item => (
-      <ListItem p="md" key={item.name}>
+      <ListItem p="sm" key={item.name}>
         <Link as={RouterLink} to={item.url}>
           {item.name}
         </Link>
@@ -45,7 +45,7 @@ export const Nav: React.SFC<{ items: MenuItem[] }> = ({ items }) => (
   <Navbar>
     {items.map(item => (
       <NavbarItem key={item.name}>
-        <Link p="md" as={RouterLink} to={item.url}>
+        <Link p="sm" as={RouterLink} to={item.url}>
           {item.name}
         </Link>
         {item.children.length > 0 && (
@@ -53,7 +53,7 @@ export const Nav: React.SFC<{ items: MenuItem[] }> = ({ items }) => (
             <List>
               {item.children.map(subItem => (
                 <ListItem key={subItem.name}>
-                  <Link p="md" display="block" as={RouterLink} to={item.url}>
+                  <Link p="xs" display="block" as={RouterLink} to={subItem.url}>
                     {subItem.name}
                   </Link>
                 </ListItem>
@@ -76,8 +76,8 @@ export enum SearchBarArea {
 const searchBarLayoutTheme: DefaultThemeProps = {
   searchbarLayout: {
     display: 'grid',
-    py: 'md',
-    gridGap: 'md',
+    py: 'sm',
+    gridGap: 'sm',
     // prettier-ignore
     gridTemplate: toGridTemplate([
       [ '200px',             '1fr',                'auto',               'auto'             ],
@@ -96,7 +96,11 @@ export const Searchbar = () => (
     </Link>
     <Icon gridArea={SearchBarArea.login} src="user" />
     <ToggleMiniCartMutation>
-      {toggle => <Icon gridArea={SearchBarArea.cart} src="cart" onClick={toggle as any} css={{ cursor: 'pointer' }} />}
+      {toggle => (
+        <MiniCartQuery>
+          {(data: any) => <MiniCartIcon onClick={toggle} gridArea={SearchBarArea.cart} itemsQty={data.cart.itemsQty} />}
+        </MiniCartQuery>
+      )}
     </ToggleMiniCartMutation>
   </Box>
 );

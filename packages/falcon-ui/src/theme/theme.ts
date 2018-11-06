@@ -1,17 +1,19 @@
 export const defaultBaseTheme = {
   colors: {
-    primary: '#eef0f2',
-    primaryLight: '#f8f8f8',
-    primaryDark: '#e8e8e8',
-    primaryText: '#5f6367',
+    primary: '#A9CF38',
+    primaryLight: '#CBDE6E',
+    primaryDark: '#A9CF38',
+    primaryText: '#fff',
 
-    secondary: '#A9CF38',
-    secondaryLight: '#CBDE6E',
-    secondaryDark: '#A9CF38',
-    secondaryText: '#fff',
+    secondary: '#eef0f2',
+    secondaryLight: '#f8f8f8',
+    secondaryDark: '#e8e8e8',
+    secondaryText: '#5f6367',
+
     error: '#E74C3C',
     errorText: '#000000',
-    black: '#000000',
+
+    black: '#5f6367',
     white: '#ffffff',
     transparent: 'transparent'
   },
@@ -26,11 +28,13 @@ export const defaultBaseTheme = {
 
   spacing: {
     none: 0,
-    xs: 4,
-    sm: 8,
-    md: 16,
+    xs: 8,
+    sm: 16,
+    md: 24,
     lg: 32,
-    xl: 64
+    xl: 40,
+    xxl: 48,
+    xxxl: 64
   },
 
   fonts: {
@@ -39,13 +43,13 @@ export const defaultBaseTheme = {
   },
 
   fontSizes: {
-    xs: 12,
-    sm: 14,
-    md: 16,
-    lg: 20,
-    xl: 26,
-    xxl: 34,
-    xxxl: 48
+    xs: 13,
+    sm: 16,
+    md: 20,
+    lg: 26,
+    xl: 39,
+    xxl: 48,
+    xxxl: 96
   },
 
   fontWeights: {
@@ -66,26 +70,25 @@ export const defaultBaseTheme = {
   },
 
   borders: {
-    light: '0.5px solid',
+    none: 'none',
     regular: '1px solid',
     bold: '2px solid'
   },
 
   borderRadius: {
     none: 0,
-    xs: 4,
-    sm: 8,
-    md: 16,
-    lg: 32,
-    xl: 333
+    small: 2,
+    medium: 4,
+    large: 8,
+    round: 333
   },
 
   boxShadows: {
     none: 'none',
-    xs: '0 5px 5px rgba(0,0,0,.1)',
-    sm: '0 0 2px 0 rgba(0,0,0,.08),0 2px 8px 0 rgba(0,0,0,.16)',
-    md: '0 0 2px 0 rgba(0,0,0,.08),0 4px 16px 0 rgba(0,0,0,.16)',
-    lg: '0 0 2px 0 rgba(0,0,0,.08),0 8px 32px 0 rgba(0,0,0,.16)'
+    subtle: '0 5px 5px rgba(0,0,0,.1)',
+    pronounced: '0 0 2px 0 rgba(0,0,0,.08),0 2px 8px 0 rgba(0,0,0,.16)',
+    strong: '0 0 2px 0 rgba(0,0,0,.08),0 4px 16px 0 rgba(0,0,0,.16)',
+    distant: '0 0 2px 0 rgba(0,0,0,.08),0 8px 32px 0 rgba(0,0,0,.16)'
   },
 
   easingFunctions: {
@@ -100,10 +103,6 @@ export const defaultBaseTheme = {
     standard: '250ms',
     long: '375ms'
   },
-
-  // animations: {
-
-  // },
 
   zIndex: {
     dropDownMenu: 600,

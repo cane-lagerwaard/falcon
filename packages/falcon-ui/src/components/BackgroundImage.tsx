@@ -10,6 +10,8 @@ export const BackgroundImage = themed({
 
   defaultTheme: {
     backgroundImage: {
+      borderRadius: 'none',
+
       css: ({ src, ratio }) => ({
         backgroundImage: `url(${src})`,
         backgroundSize: 'cover',

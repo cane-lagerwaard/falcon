@@ -34,7 +34,7 @@ module.exports = class DynamicRouteResolver {
   getDynamicRouteHandlers(path) {
     return this.extensionContainer
       .getExtensionsByCriteria(ext => ext.getFetchUrlPriority && ext.getFetchUrlPriority(path) > 0)
-      .sort((first, second) => second.getFetchUrlPriority(path) < first.getFetchUrlPriority(path));
+      .sort((first, second) => (second.getFetchUrlPriority(path) < first.getFetchUrlPriority(path) ? 1 : -1));
   }
 
   /**

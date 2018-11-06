@@ -6,7 +6,7 @@ import { Box } from './Box';
 import { Icon } from './Icon';
 
 type DropDownPropsType = {
-  onChange?: (selectedItem: any) => void;
+  onChange?: (menuItemValue: any) => void;
 };
 
 type DropdownContextType = {
@@ -39,9 +39,10 @@ export const Dropdown = themed({
   defaultTheme: {
     dropdown: {
       display: 'flex',
-      borderRadius: 'lg',
-      border: 'light',
-      borderColor: 'primaryDark',
+      borderRadius: 'medium',
+      border: 'regular',
+      borderColor: 'secondaryDark',
+
       css: ({ theme }) => ({
         userSelect: 'none',
         position: 'relative',
@@ -60,7 +61,7 @@ const DropdownLabelInnerDOM: React.SFC<any> = ({ children, ...rest }) => (
   <DropdownContext.Consumer>
     {({ open }) => (
       <Box {...rest}>
-        <span>{children}</span>
+        <Box flex="1">{children}</Box>
         <Icon src={open ? 'dropdownArrowUp' : 'dropdownArrowDown'} fallback={open ? '▴' : '▾'} />
       </Box>
     )}
@@ -73,9 +74,9 @@ export const DropdownLabel = themed({
   defaultTheme: {
     dropdownLabel: {
       display: 'flex',
-      py: 'sm',
-      px: 'md',
-      fontSize: 'md',
+      py: 'xs',
+      px: 'sm',
+      fontSize: 'sm',
       justifyContent: 'space-between',
       css: {
         width: '100%',
@@ -98,8 +99,8 @@ export const DropdownMenu = themed({
     dropdownMenu: {
       m: 'none',
       p: 'none',
-      borderRadius: 'sm',
-      boxShadow: 'xs',
+      borderRadius: 'medium',
+      boxShadow: 'subtle',
       bg: 'white',
       css: ({ theme }) => ({
         position: 'absolute',
@@ -128,7 +129,7 @@ export const DropdownMenuItem = themed({
 
   defaultTheme: {
     dropdownMenuItem: {
-      p: 'sm',
+      p: 'xs',
       css: ({ theme }) => ({
         cursor: 'pointer',
         ':hover': {

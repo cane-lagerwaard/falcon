@@ -1,12 +1,12 @@
 import React from 'react';
-import { H2, Text, Group, Input, Button, Checkbox, Label, Box, DefaultThemeProps } from '@deity/falcon-ui';
+import { H3, Text, Group, Input, Button, Checkbox, Label, Box, DefaultThemeProps } from '@deity/falcon-ui';
 
 const newsletterLayoutTheme: DefaultThemeProps = {
   newsletterLayout: {
-    bgFullWidth: 'primaryLight',
-    py: 'lg',
+    bgFullWidth: 'secondaryLight',
+    py: 'md',
+    gridGap: 'sm',
     display: 'grid',
-    gridGap: 'md',
     gridTemplateColumns: '1fr',
     css: {
       maxWidth: 560,
@@ -18,7 +18,7 @@ const newsletterLayoutTheme: DefaultThemeProps = {
 
 export const Newsletter = () => (
   <Box defaultTheme={newsletterLayoutTheme}>
-    <H2>Newsletter</H2>
+    <H3>Newsletter</H3>
     <Text>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egestas nisl eu accumsan sodales. Nam semper
       magna vitae enim placerat dictum.
@@ -26,11 +26,17 @@ export const Newsletter = () => (
 
     <form>
       <Group>
-        <Input type="email" required />
+        <Input
+          type="email"
+          required
+          css={({ theme }) => ({
+            height: theme.spacing.lg
+          })}
+        />
         <Button as="input" type="submit" value="Subscribe" />
       </Group>
-      <Label htmlFor="subscribe" mt="md">
-        <Checkbox id="subscribe" required size={16} mr="xs" />I would like to subscribe to updates
+      <Label htmlFor="subscribe" my="sm" display="flex" justifyContent="center" alignItems="center">
+        <Checkbox id="subscribe" required mr="xs" />I would like to subscribe to updates
       </Label>
     </form>
   </Box>

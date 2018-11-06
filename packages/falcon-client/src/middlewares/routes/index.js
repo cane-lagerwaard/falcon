@@ -16,12 +16,7 @@ import i18next from './i18nextMiddleware';
  * @return {function(ctx: object, next: function)[]} Koa middlewares
  */
 export function renderAppShell({ configuration, webpackAssets }) {
-  const { config, configSchema } = configuration;
-  const { useWebManifest } = config;
-
-  if (!useWebManifest) {
-    webpackAssets.webmanifest = '';
-  }
+  const { configSchema } = configuration;
 
   return [apolloClientProvider({ clientStates: { configSchema } }), helmet(), appShell({ webpackAssets })];
 }
@@ -41,11 +36,7 @@ export function renderAppShell({ configuration, webpackAssets }) {
  */
 export function renderApp({ configuration, clientApolloSchema, App, webpackAssets }) {
   const { config, configSchema } = configuration;
-  const { i18n, serverSideRendering, useWebManifest } = config;
-
-  if (!useWebManifest) {
-    webpackAssets.webmanifest = '';
-  }
+  const { i18n, serverSideRendering } = config;
 
   return [
     apolloClientProvider({

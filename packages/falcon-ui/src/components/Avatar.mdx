@@ -3,14 +3,21 @@ name: Avatar
 menu: Components
 ---
 
-import { Playground } from 'docz';
-import { Avatar } from '../';
+import { Playground, Link } from 'docz';
+import { ThemePreview } from 'docs';
+import { Avatar } from '@deity/falcon-ui';
 
-# Avatar
+<ThemePreview of={Avatar} />
 
-### Basic usage
+
+`Avatar` component is rendered as an `<img>` element and accepts all of the `<img>` props, its size can be easily adjusted via theme-based `size`,
+ but it also accepts other [responsive, theme-based style props](/responsive-props) that allow further styling customizations.
+
+```javascript
+import { Avatar } from '@deity/falcon-ui';
+```
 
 <Playground>
-  <Avatar src="http://i.pravatar.cc/150?img=69" mr="md" />
-  <Avatar src="http://i.pravatar.cc/150?img=10" size={128} />
+  <Avatar src="http://i.pravatar.cc/150?img=69" mr="lg"/>
+  <Avatar src="http://i.pravatar.cc/150?img=10" size="xxxl" title="Happy face" alt="Mrs Smith" />
 </Playground>

@@ -4,32 +4,37 @@ menu: Components
 ---
 
 import { Playground } from 'docz';
-import { Navbar, Link, NavbarItem, NavbarItemMenu, Box, List, ListItem, Divider } from '../';
+import { ThemePreview } from 'docs';
+import { Navbar, Link, NavbarItem, NavbarItemMenu, Box, List, ListItem, Divider } from '@deity/falcon-ui';
 
-# Navbar
+<ThemePreview of={[Navbar, NavbarItem, NavbarItemMenu]} />
 
-### Basic usage
+`Navbar` along with `NavbarItem` and `NavbarItemMenu` components accept all of the [responsive, theme-based style props](/responsive-props) for styling customizations.
+
+```javascript
+import { Navbar, NavbarItem, NavbarItemMenu } from '@deity/falcon-ui';
+```
 
 <Playground>
-  <Box height={300} css={{ overflow: 'hidden' }}>
+  <Box css={{ height: 230, overflow: 'hidden' }}>
     <Navbar>
       <NavbarItem>
-        <Link p="md">Baking</Link>
+        <Link p="sm">Baking</Link>
         <NavbarItemMenu>First: Any content</NavbarItemMenu>
       </NavbarItem>
       <NavbarItem>
-        <Link p="md">Cooking</Link>
+        <Link p="sm">Cooking</Link>
         <NavbarItemMenu>Second: Any content</NavbarItemMenu>
       </NavbarItem>
       <NavbarItem>
-        <Link p="md">Dining</Link>
+        <Link p="sm">Dining</Link>
         <NavbarItemMenu>
           <List>
             <ListItem>Item</ListItem>
             <ListItem>Another item</ListItem>
             <ListItem>Last</ListItem>
           </List>
-          <Divider />
+          <Divider my="xs" />
           <List>
             <ListItem>Item</ListItem>
             <ListItem>Another item</ListItem>

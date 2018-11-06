@@ -1,10 +1,12 @@
 const { ApiDataSource, Extension, ApiUrlPriority } = require('@deity/falcon-server-env');
+const { EventEmitter2 } = require('eventemitter2');
 const ExtensionContainer = require('./../containers/ExtensionContainer');
 const DynamicRouteResolver = require('./DynamicRouteResolver');
 
 describe('DynamicRouteResolver', () => {
   it('Should correctly resolve DynamicRoute request', async () => {
-    const extensionContainer = new ExtensionContainer([]);
+    const ee = new EventEmitter2();
+    const extensionContainer = new ExtensionContainer(ee);
     const Api1 = class extends ApiDataSource {
       getFetchUrlPriority(path) {
         return path.startsWith('/blog/') ? ApiUrlPriority.HIGHEST : ApiUrlPriority.LOW;
@@ -34,9 +36,9 @@ describe('DynamicRouteResolver', () => {
         };
       }
     };
-    const ext1 = new Ext1({ extensionContainer, name: 'Ext1' });
+    const ext1 = new Ext1({ name: 'Ext1' });
     ext1.api = new Api1();
-    const ext2 = new Ext2({ extensionContainer, name: 'Ext2' });
+    const ext2 = new Ext2({ name: 'Ext2' });
     ext2.api = new Api2();
 
     const spyExt1 = jest.spyOn(ext1, 'fetchUrl');
@@ -44,10 +46,9 @@ describe('DynamicRouteResolver', () => {
 
     extensionContainer.extensions.set(ext1.name, ext1);
     extensionContainer.extensions.set(ext2.name, ext2);
-
     const dynamicResolver = new DynamicRouteResolver(extensionContainer);
-    const result = await dynamicResolver.fetchUrl({}, { path: 'foo.html' });
 
+    const result = await dynamicResolver.fetchUrl({}, { path: 'foo.html' });
     expect(result).toEqual({ id: 2, path: 'foo.html', type: 'bar' });
     expect(spyExt2).toHaveBeenCalled();
     expect(spyExt1).not.toHaveBeenCalled();

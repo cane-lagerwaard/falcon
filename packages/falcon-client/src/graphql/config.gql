@@ -11,7 +11,6 @@ query CLIENT_SIDE_APP_INIT {
 
 query APP_INIT {
   config @client {
-    useWebManifest
     googleTagManager {
       id
     }

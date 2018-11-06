@@ -9,6 +9,12 @@
     "reviews": "{{count}} review",
     "reviews_plural": "{{count}} reviews",
     "addToCart": "Add to cart",
+    "addingToCart": "Adding...",
+    "addedToCart": "Added!",
+    "error": {
+      "qty": "Quantity must be greater than 0",
+      "configurableOptions": "Please select all required options"
+    },
     "tabs": {
       "description": "Description",
       "moreInformation": "More information",

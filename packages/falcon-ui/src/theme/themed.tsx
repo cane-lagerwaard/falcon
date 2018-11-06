@@ -12,7 +12,7 @@ import {
 } from './index';
 import { extractThemableProps } from './utils';
 import { defaultBaseTheme } from './theme';
-import { mappings, PropsMappings, ResponsivePropMapping } from './propsmapings';
+import { mappings, PropsMappings, ResponsivePropMapping } from './responsiveprops';
 
 const propsMappingKeys = Object.keys(mappings) as (keyof PropsMappings)[];
 
@@ -249,7 +249,7 @@ function getThemedCss(props: ThemedProps) {
 // filtering which props to forward to next component is tricky
 // and behaves differently if next component is html element, custom component
 // or custom component whihch is themed component
-const customPropsBlacklist = ['as', 'tag', 'themeKey', 'variant', 'defaultTheme'];
+const customPropsBlacklist = ['as', 'tag', 'variant', 'defaultTheme', 'css'];
 
 const filterPropsToForward = (baseComponent: any, props: any, ref: any) => {
   const filteredProps: any = {};
@@ -259,7 +259,7 @@ const filterPropsToForward = (baseComponent: any, props: any, ref: any) => {
     // when html tag is provided forward only valid html props to it
     if (isHtmlTag && !isPropValid(key)) continue;
 
-    // if custom component is provided via `extend` prop do not forward themable props to it (bg, color, m, p etc)
+    // if custom component is provided via `as` prop do not forward themable props to it (bg, color, m, p etc)
     // neighter forward any of the blacklisted props
     const themableProp = propsMappingKeys.indexOf(key as any) !== -1 || customPropsBlacklist.indexOf(key) !== -1;
     if (themableProp) continue;

@@ -5,8 +5,9 @@ export const Swipeable = themed({
 
   defaultTheme: {
     swipeable: {
+      display: 'flex',
+
       css: {
-        display: 'flex',
         overflowX: 'scroll',
         msOverflowStyle: 'none',
         WebkitRocketLauncher: '0',
@@ -26,9 +27,9 @@ export const SwipeableItem = themed({
 
   defaultTheme: {
     swipeableItem: {
+      flex: '0 0 100%',
       css: {
-        scrollSnapAlign: 'center',
-        flex: '0 0 100%'
+        scrollSnapAlign: 'center'
       }
     }
   }

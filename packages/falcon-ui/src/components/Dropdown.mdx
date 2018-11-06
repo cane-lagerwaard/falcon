@@ -5,13 +5,19 @@ menu: Components
 
 import { Playground } from 'docz';
 import { Value } from 'react-powerplug';
-import { Box, Backdrop, Portal, Dropdown, DropdownLabel, DropdownMenu, DropdownMenuItem } from '../';
+import { ThemePreview, CustomPropsTable } from 'docs';
+import { Box, Dropdown, DropdownLabel, DropdownMenu, DropdownMenuItem } from '@deity/falcon-ui';
 
-# Dropdown
-### Basic usage
+<ThemePreview of={[Dropdown, DropdownLabel, DropdownMenu, DropdownMenuItem]} />
+
+`Dropdown` component along with `DropdownLabel`, `DropdownMenu` and `DropdownMenuItem` can be used for creating toggleable dropdowns in declarative way.
+
+```javascript
+import { Dropdown, DropdownLabel, DropdownMenu, DropdownMenuItem } from '@deity/falcon-ui';
+```
 
 <Playground>
-  <Box height={300}>
+  <Box css={{height: 150}}>
     <Value initial="acending">
        {({ value, set }) => (
           <Dropdown onChange={set}>
@@ -31,3 +37,24 @@ import { Box, Backdrop, Portal, Dropdown, DropdownLabel, DropdownMenu, DropdownM
     </Value>
   </Box>
 </Playground>
+
+<CustomPropsTable componentName="Dropdown" props={[{
+  name: 'onChange',
+  type: '(menuItemValue: any) => void',
+  required: false,
+  defaultValue: '',
+  description: 'handler that fires on <code>DropdownMenuItem</code> click, accepts <code>DropdownMenuItem</code> <code>value</code> prop as an argument'
+  }]}
+ />
+
+<CustomPropsTable componentName="DropdownMenuItem" props={[{
+  name: 'value',
+  type: 'any',
+  required: false,
+  defaultValue: '',
+  description: '<code>value</code> prop gets passed to parent <code>Dropdown</code> <code>onChange</code> event on <code>DropdownMenuItem</code> click'
+  }]}
+ />
+
+
+`Dropdown`,`DropdownLabel`, `DropdownMenu` and `DropdownMenuItem` components all accept all of the [responsive, theme-based style props](/responsive-props).

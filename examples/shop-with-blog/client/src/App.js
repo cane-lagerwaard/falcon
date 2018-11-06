@@ -17,9 +17,10 @@ import {
   FooterQuery,
   HeaderQuery,
   MiniCartQuery,
-  MiniCart
+  MiniCart,
+  LocaleProvider
 } from '@deity/falcon-ecommerce-uikit';
-import { ThemeEditor, ThemeState } from '@deity/falcon-theme-editor';
+import { ThemeEditor, ThemeEditorState } from '@deity/falcon-theme-editor';
 
 import { deityGreenTheme } from './theme';
 
@@ -43,33 +44,35 @@ const Category = AsyncComponent(() => import(/* webpackChunkName: "shop/category
 const Product = AsyncComponent(() => import(/* webpackChunkName: "shop/product" */ './pages/shop/Product'));
 
 const App = ({ online }) => (
-  <ThemeState initial={deityGreenTheme}>
-    {props => (
-      <React.Fragment>
-        <ThemeProvider theme={props.theme}>
-          <HeadMetaTags />
-          <AppLayout>
-            <HeaderQuery>{data => <Header {...data} />}</HeaderQuery>
-            {!online && <p>your are offline.</p>}
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/products" component={Category} />
-              <DynamicRoute
-                loaderComponent={Loader}
-                components={{
-                  'shop-category': Category,
-                  'shop-product': Product
-                }}
-              />
-            </Switch>
-            <FooterQuery>{(data, t) => <Footer {...data} translations={t} />}</FooterQuery>
-            <MiniCartQuery>{data => <MiniCart {...data} />}</MiniCartQuery>
-          </AppLayout>
-        </ThemeProvider>
-        <ThemeEditor {...props} />
-      </React.Fragment>
-    )}
-  </ThemeState>
+  <LocaleProvider>
+    <ThemeEditorState initial={deityGreenTheme}>
+      {props => (
+        <React.Fragment>
+          <ThemeProvider theme={props.theme}>
+            <HeadMetaTags />
+            <AppLayout>
+              <HeaderQuery>{data => <Header {...data} />}</HeaderQuery>
+              {!online && <p>your are offline.</p>}
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/products" component={Category} />
+                <DynamicRoute
+                  loaderComponent={Loader}
+                  components={{
+                    'shop-category': Category,
+                    'shop-product': Product
+                  }}
+                />
+              </Switch>
+              <FooterQuery>{(data, t) => <Footer {...data} translations={t} />}</FooterQuery>
+              <MiniCartQuery>{data => <MiniCart {...data} />}</MiniCartQuery>
+            </AppLayout>
+          </ThemeProvider>
+          <ThemeEditor {...props} />
+        </React.Fragment>
+      )}
+    </ThemeEditorState>
+  </LocaleProvider>
 );
 
 App.propTypes = {

@@ -3,7 +3,7 @@ import { Query } from '../Query/Query';
 import { MenuItem } from '../Header';
 
 const GET_FOOTER_DATA = gql`
-  query GET_FOOTER_DATA {
+  query FooterData {
     config @client {
       menus {
         footer {

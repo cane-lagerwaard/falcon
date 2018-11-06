@@ -5,16 +5,15 @@ export const Badge = themed({
 
   defaultTheme: {
     badge: {
-      bg: 'secondary',
-      color: 'secondaryText',
-      px: 'sm',
-      py: 'xs',
-      borderRadius: 'lg',
-
-      css: {
-        display: 'inline-block',
-        textTransform: 'uppercase'
-      }
+      bg: 'primary',
+      color: 'primaryText',
+      px: 'xs',
+      height: 'md',
+      borderRadius: 'medium',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 'xs'
     }
   }
 });

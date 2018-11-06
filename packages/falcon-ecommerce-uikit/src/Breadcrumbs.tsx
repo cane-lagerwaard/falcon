@@ -4,8 +4,8 @@ import { Breadcrumbs as BreadcrumbsLayout, Breadcrumb, Link, Text } from '@deity
 
 export const Breadcrumbs: React.SFC<{ breadcrumbs: any }> = ({ breadcrumbs }) => (
   <BreadcrumbsLayout>
-    {breadcrumbs.map((breadcrumb: any, index: number) => (
-      <Breadcrumb key={breadcrumb.name} current={breadcrumbs.length - 1 === index}>
+    {breadcrumbs.map((breadcrumb: any) => (
+      <Breadcrumb key={breadcrumb.name}>
         {breadcrumb.urlPath ? (
           <Link as={RouterLink} to={breadcrumb.urlPath}>
             {breadcrumb.name}

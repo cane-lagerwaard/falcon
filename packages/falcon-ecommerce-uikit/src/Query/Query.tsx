@@ -1,8 +1,8 @@
 import React from 'react';
 import { Query as ApolloQuery, OperationVariables, QueryProps, QueryResult, ObservableQueryFields } from 'react-apollo';
 import { I18n, TranslationFunction } from 'react-i18next';
-import { Loader } from './Loader';
 import { NetworkStatus } from 'apollo-client';
+import { Loader } from './Loader';
 
 export class Query<TData = any, TVariables = OperationVariables, TTranslations = {}> extends React.Component<
   QueryProps<TData, TVariables> & {

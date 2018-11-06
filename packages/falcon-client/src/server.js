@@ -20,7 +20,7 @@ export default ({ App, clientApolloSchema, configuration, webpackAssets }) => {
   const instance = new Koa();
   configuration.onServerCreated(instance);
 
-  const publicDir = process.env.RAZZLE_PUBLIC_DIR;
+  const publicDir = process.env.PUBLIC_DIR;
   const router = new Router();
   router.get('/sw.js', serve(publicDir, { maxage: 0 }));
   router.get('/static/*', serve(publicDir, { maxage: process.env.NODE_ENV === 'production' ? 31536000000 : 0 }));

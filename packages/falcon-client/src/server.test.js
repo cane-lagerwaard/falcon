@@ -17,7 +17,6 @@ describe('Server', () => {
     const onServerStartedMock = jest.fn();
     const config = {
       serverSideRendering: true,
-      useWebManifest: true,
       logLevel: 'error'
     };
     const configuration = {
@@ -80,7 +79,6 @@ describe('Server', () => {
     const config = {
       logLevel: 'error',
       serverSideRendering: true,
-      useWebManifest: true,
       googleTagManager: {
         id: null
       },

@@ -11,8 +11,8 @@ export const Navbar = themed({
     navbar: {
       p: 'none',
       m: 'none',
-      bgFullWidth: 'secondary',
-      color: 'secondaryText',
+      bgFullWidth: 'primary',
+      color: 'primaryText',
       css: {
         display: 'flex',
         listStyle: 'none',
@@ -47,24 +47,20 @@ const NavbarItemInnerDOM: React.SFC<any> = props => (
 export const NavbarItem = themed({
   tag: NavbarItemInnerDOM,
 
-  defaultProps: {
-    active: false
-  },
-
   defaultTheme: {
     navbarItem: {
-      fontSize: 'md',
-      css: ({ theme, active }) => ({
+      fontSize: 'sm',
+      display: 'flex',
+      color: 'primaryText',
+
+      css: ({ theme }) => ({
         cursor: 'pointer',
         userSelect: 'none',
-        display: 'flex',
         listStyle: 'none',
-        background: active ? theme.colors.primaryLight : 'none',
-        color: active ? theme.colors.primaryText : theme.colors.secondaryText,
 
         ':hover': {
-          background: theme.colors.primary,
-          color: theme.colors.primaryText
+          background: theme.colors.secondary,
+          color: theme.colors.secondaryText
         }
       })
     }
@@ -87,9 +83,9 @@ export const NavbarItemMenu = themed({
   defaultTheme: {
     navbarItemMenu: {
       p: 'sm',
-      bg: 'primary',
-      color: 'primaryText',
-      boxShadow: 'xs',
+      bg: 'secondary',
+      color: 'secondaryText',
+      boxShadow: 'subtle',
       css: {
         position: 'absolute',
         top: '100%',

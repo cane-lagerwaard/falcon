@@ -84,15 +84,6 @@ Please check out https://github.com/deity-io/falcon/tree/master/packages/falcon-
 
 [Falcon Server](https://github.com/deity-io/falcon/tree/master/packages/falcon-server)
 
-## Advanced
-
-Coming soon
-
-### Code Splitting
-
-### Dynamic routing
-
-### State management
 
 ## Development quick start
 
@@ -118,10 +109,3 @@ cd package-name
 yarn test
 yarn test:coverage
 ```
-
-### TODO
-- jest for all packages
-- changelog generation? - https://github.com/lerna/lerna-changelog
-- learna publish packages to npm script?
-
-

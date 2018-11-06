@@ -4,6 +4,8 @@ const execa = require('execa');
 const Listr = require('listr');
 
 const examplesPath = resolve(__dirname, './../examples');
+const rootDir = resolve(__dirname, './../../..');
+const rootPackage = resolve(rootDir, 'package.json');
 
 const getAvailableExamples = () => {
   try {
@@ -15,7 +17,7 @@ const getAvailableExamples = () => {
 
 const copyFolder = (source, dest) => {
   fs.copySync(source, dest, {
-    filter: src => !src.match(/.*\/(node_modules|coverage|build).*/g)
+    filter: src => !src.replace(source, '').match(/.*\/(node_modules|coverage|build).*/g)
   });
 };
 
@@ -38,6 +40,42 @@ const getActiveProjects = targetPath => {
   }
 
   return folders;
+};
+
+const replaceNightlyVersion = () => {
+  const { workspaces } = fs.readJSONSync(rootPackage);
+  const nightlyVersionMap = new Map();
+
+  // Getting the actual package versions
+  workspaces.forEach(workspace => {
+    if (!workspace.startsWith('packages/')) {
+      return;
+    }
+
+    const packagePath = resolve(rootDir, workspace, 'package.json');
+    const { name, version } = fs.readJSONSync(packagePath);
+    nightlyVersionMap.set(name, version);
+  });
+
+  // Re-writing nightly versions for all available examples
+  getAvailableExamples().forEach(example => {
+    getActiveProjects(resolve(examplesPath, example)).forEach(exampleProject => {
+      const examplePackagePath = resolve(exampleProject, 'package.json');
+      const examplePackage = fs.readJSONSync(examplePackagePath);
+
+      ['dependencies', 'devDependencies'].forEach(depKey => {
+        nightlyVersionMap.forEach((packageVer, packageName) => {
+          if (packageName in examplePackage[depKey]) {
+            examplePackage[depKey][packageName] = packageVer;
+          }
+        });
+      });
+
+      fs.writeJSONSync(examplePackagePath, examplePackage, {
+        spaces: 2
+      });
+    });
+  });
 };
 
 const createFalconApp = ({ name, example }) => {
@@ -81,6 +119,7 @@ const createFalconApp = ({ name, example }) => {
 };
 
 module.exports = createFalconApp;
+module.exports.replaceNightlyVersion = replaceNightlyVersion;
 module.exports.copyFolder = copyFolder;
 module.exports.examplesPath = examplesPath;
 module.exports.getAvailableExamples = getAvailableExamples;

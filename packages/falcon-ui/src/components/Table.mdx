@@ -4,11 +4,19 @@ menu: Components
 ---
 
 import { Playground } from 'docz';
-import { Table, Thead, Tr, Th, Td, Tbody } from '../';
+import { ThemePreview } from 'docs';
+import { Table, Thead, Tr, Th, Td, Tbody } from '@deity/falcon-ui';
 
-# Table
+<ThemePreview of={[Table, Thead, Tr, Th, Td, Tbody]} />
 
-### Basic usage
+
+`Table` with its related components (`Thead, Tr, Th, Td, Tbody`) can be used to render html `<table>` element with basic styles applied
+which can be customized via [responsive, theme-based style props](/responsive-props).
+
+```javascript
+import { Table, Thead, Tr, Th, Td, Tbody } from '@deity/falcon-ui';
+```
+
 
 <Playground>
   <Table>
@@ -23,7 +31,7 @@ import { Table, Thead, Tr, Th, Td, Tbody } from '../';
       <Tr key="0">
         <Td>key</Td>
         <Td>string</Td>
-        <Td>fancy description</Td>
+        <Td>very long very detailed description</Td>
       </Tr>
       <Tr key="1">
         <Td>variant</Td>

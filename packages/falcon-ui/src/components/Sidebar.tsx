@@ -12,8 +12,8 @@ export const Sidebar = themed({
     sidebar: {
       display: 'flex',
       bg: 'white',
+      position: 'fixed',
       css: ({ visible, theme, side }) => ({
-        position: 'fixed',
         top: 0,
         bottom: 0,
         [side]: 0,

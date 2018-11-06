@@ -5,8 +5,9 @@ export const Avatar = themed({
 
   defaultTheme: {
     avatar: {
-      borderRadius: 'xl',
-      size: 48,
+      borderRadius: 'round',
+      size: 'lg',
+
       css: {
         objectFit: 'contain',
         maxWidth: '100%'

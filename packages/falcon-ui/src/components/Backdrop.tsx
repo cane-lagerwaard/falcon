@@ -26,15 +26,7 @@ export const Backdrop = themed({
         opacity: visible ? 0.1 : 0,
         pointerEvents: visible ? 'auto' : 'none',
         zIndex: theme.zIndex.backdrop
-      }),
-
-      variants: {
-        transparent: {
-          css: {
-            background: 'transparent'
-          }
-        }
-      }
+      })
     }
   }
 });

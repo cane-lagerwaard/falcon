@@ -3,10 +3,11 @@ import Logger from '@deity/falcon-logger';
 
 function falconWebServer() {
   const server = require('./server').default;
-  const app = require('./clientApp');
-  const configuration = require('./clientApp/configuration').default;
   // eslint-disable-next-line
-  const assetsManifest = require(process.env.RAZZLE_ASSETS_MANIFEST);
+  const app = require('./clientApp');
+  const bootstrap = require('./clientApp/bootstrap').default;
+  // eslint-disable-next-line
+  const assetsManifest = require(process.env.ASSETS_MANIFEST);
 
   /**
    * Creates an instance of Falcon web server
@@ -16,7 +17,7 @@ function falconWebServer() {
   return server({
     App: app.default,
     clientApolloSchema: app.clientApolloSchema,
-    configuration,
+    configuration: bootstrap,
     webpackAssets: {
       clientJs: assetsManifest.client.js,
       clientCss: assetsManifest.client.css,
@@ -26,15 +27,14 @@ function falconWebServer() {
   });
 }
 
-// Use `app#callback()` method here instead of directly
-// passing `app` as an argument to `createServer` (or use `app#listen()` instead)
-// @see https://github.com/koajs/koa/blob/master/docs/api/index.md#appcallback
-
-const port = Number(process.env.PORT) || 3000;
 const server = falconWebServer();
 let currentWebServerHandler = server.callback();
 
+// Use `app#callback()` method here instead of directly
+// passing `app` as an argument to `createServer` (or use `app#listen()` instead)
+// @see https://github.com/koajs/koa/blob/master/docs/api/index.md#appcallback
 const httpServer = http.createServer(currentWebServerHandler);
+const port = parseInt(process.env.PORT, 10) || 3000;
 httpServer.listen(port, error => {
   if (error) {
     Logger.error(error);
@@ -47,14 +47,17 @@ httpServer.listen(port, error => {
 if (module.hot) {
   Logger.log('✅  Server-side HMR Enabled!');
 
-  module.hot.accept(['./server', './clientApp', './clientApp/configuration'], () => {
-    Logger.log('🔁  HMR Reloading server...');
+  module.hot.accept(['./server', './clientApp', './clientApp/bootstrap'], () => {
+    Logger.log('🔁  HMR: Reloading server...');
 
-    httpServer.removeListener('request', currentWebServerHandler);
-
-    const newHandler = falconWebServer().callback();
-
-    httpServer.on('request', newHandler);
-    currentWebServerHandler = newHandler;
+    try {
+      const newHandler = falconWebServer().callback();
+      httpServer.removeListener('request', currentWebServerHandler);
+      httpServer.on('request', newHandler);
+      currentWebServerHandler = newHandler;
+      Logger.log('✅  HMR: Server reloaded.');
+    } catch (error) {
+      Logger.log('🛑  HMR: Reloading server failed, syntax error!');
+    }
   });
 }

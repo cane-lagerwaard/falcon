@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { Query } from '../Query/Query';
 
 const GET_HEADER_DATA = gql`
-  query GET_HEADER_DATA {
+  query HeaderData {
     config @client {
       menus {
         header {

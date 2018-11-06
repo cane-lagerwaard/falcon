@@ -5,11 +5,13 @@ export const LoaderLayout = themed({
   tag: 'div',
   defaultTheme: {
     loaderLayout: {
-      height: '100vh',
-      width: '100%',
       display: 'flex',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      css: {
+        height: '100vh',
+        width: '100%'
+      }
     }
   }
 });

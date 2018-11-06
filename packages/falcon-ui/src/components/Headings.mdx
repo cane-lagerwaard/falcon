@@ -4,11 +4,16 @@ menu: Components
 ---
 
 import { Playground } from 'docz';
-import { H1, H2, H3, H4 } from '../';
+import { ThemePreview } from 'docs';
+import { H1, H2, H3, H4 } from '@deity/falcon-ui';
 
-# Headings
+<ThemePreview name="Headings" of={[H1, H2, H3, H4]} />
 
-### Basic usage
+All of `H1`, `H2`, `H3`, `H4`  accept [responsive, theme-based style props](/responsive-props).
+
+```javascript
+import { H1, H2, H3, H4 } from '@deity/falcon-ui';
+```
 
 <Playground>
   <H1> Heading H1</H1>

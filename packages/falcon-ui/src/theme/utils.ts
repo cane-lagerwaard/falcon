@@ -1,7 +1,7 @@
 import merge from 'deepmerge';
 import isPlainObject from 'is-plain-object';
 
-import { mappings } from './propsmapings';
+import { mappings } from './responsiveprops';
 import { Theme, RecursivePartial } from './index';
 
 const themablePropsKeys = [...Object.keys(mappings), 'css'];
@@ -26,7 +26,7 @@ export function extractThemableProps(props: any) {
 }
 
 export function mergeThemes(theme: Theme, themeOverride: RecursivePartial<Theme>): Theme {
-  return merge(theme, themeOverride, {
+  return merge(theme, themeOverride as Theme, {
     isMergeableObject: isPlainObject
   });
 }

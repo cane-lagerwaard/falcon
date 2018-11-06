@@ -6,11 +6,11 @@ export const Tabs = themed({
   defaultTheme: {
     tabs: {
       display: 'flex',
-      p: 'sm',
+      p: 'xs',
       m: 'none',
-      bg: 'secondary',
-      color: 'secondaryText',
-      boxShadow: 'sm',
+      bg: 'primary',
+      color: 'primaryText',
+      boxShadow: 'subtle',
       css: {
         listStyle: 'none'
       },
@@ -34,24 +34,25 @@ export const Tab = themed({
 
   defaultTheme: {
     tab: {
-      fontSize: 'md',
+      fontSize: 'sm',
       flex: 0,
       mr: 'md',
       px: 'md',
       py: 'xs',
-      borderBottom: 'bold',
+      borderBottom: 'regular',
 
       css: props => ({
         transitionProperty: 'border-bottom-color',
         transitionTimingFunction: props.theme.easingFunctions.easeIn,
         transitionDuration: props.theme.transitionDurations.short,
-        borderBottomColor: props.active ? props.theme.colors.primary : props.theme.colors.secondary,
+        borderBottomColor: props.active ? props.theme.colors.secondary : props.theme.colors.primary,
         cursor: props.active ? 'default' : 'pointer'
       }),
       variants: {
         secondary: {
+          borderBottom: 'bold',
           css: props => ({
-            borderBottomColor: props.active ? props.theme.colors.secondary : props.theme.colors.primary
+            borderBottomColor: props.active ? props.theme.colors.primary : props.theme.colors.secondary
           })
         }
       }

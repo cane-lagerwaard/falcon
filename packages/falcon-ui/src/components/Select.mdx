@@ -4,11 +4,18 @@ menu: Components
 ---
 
 import { Playground } from 'docz';
-import { Select, Option } from '../';
+import { ThemePreview } from 'docs';
+import { Select, Option } from '@deity/falcon-ui';
 
-# Select
+<ThemePreview of={[Select, Option]} />
 
-### Basic usage
+`Select` and `Option` components render as native `<select>` and `<option>` elements with basic styling applied,
+accept all of the native element props (`onChange`, `value` etc) as well as [responsive, theme-based style props](/responsive-props)
+for styling purposes.
+
+```javascript
+import { Select, Option } from '@deity/falcon-ui';
+```
 
 <Playground>
   <Select>

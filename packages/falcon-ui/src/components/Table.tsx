@@ -5,14 +5,13 @@ export const Table = themed({
 
   defaultTheme: {
     table: {
-      borderRadius: 'xs',
+      borderRadius: 'medium',
       fontSize: 'sm',
-      boxShadow: 'sm',
+      display: {
+        xs: 'block',
+        sm: 'table'
+      },
       css: {
-        display: {
-          xs: 'block',
-          md: 'table'
-        },
         width: '100%',
         overflowY: {
           xs: 'hidden',
@@ -32,7 +31,7 @@ export const Thead = themed({
 
   defaultTheme: {
     thead: {
-      bg: 'primary'
+      bg: 'secondary'
     }
   }
 });
@@ -42,9 +41,10 @@ export const Th = themed({
 
   defaultTheme: {
     th: {
-      p: 'md',
+      py: 'xs',
+      px: 'sm',
       fontWeight: 'regular',
-      fontSize: 'md',
+
       css: {
         textAlign: 'left'
       }
@@ -56,7 +56,7 @@ export const Td = themed({
   tag: 'td',
   defaultTheme: {
     td: {
-      p: 'md',
+      p: 'sm',
       fontWeight: 'light',
       lineHeight: 'large',
       css: {
@@ -71,8 +71,8 @@ export const Tr = themed({
   defaultTheme: {
     tr: {
       display: 'table-row',
-      borderTop: 'light',
-      borderColor: 'primary'
+      borderTop: 'regular',
+      borderColor: 'secondary'
     }
   }
 });
@@ -80,6 +80,8 @@ export const Tr = themed({
 export const Tbody = themed({
   tag: 'tbody',
   defaultTheme: {
-    tbody: {}
+    tbody: {
+      fontSize: 'sm'
+    }
   }
 });

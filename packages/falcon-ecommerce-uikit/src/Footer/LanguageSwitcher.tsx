@@ -11,18 +11,16 @@ export const LanguageSwitcher: React.SFC<LanguageSwitcherProps> = ({ languages, 
   const activeLanguage = languages.filter(lang => lang.active)[0];
 
   return (
-    <Box display="flex">
-      <Dropdown width="100%" onChange={onChange}>
-        <DropdownLabel>{activeLanguage.name}</DropdownLabel>
+    <Dropdown onChange={onChange}>
+      <DropdownLabel css={{ textAlign: 'left' }}>{activeLanguage.name}</DropdownLabel>
 
-        <DropdownMenu>
-          {languages.map(lang => (
-            <DropdownMenuItem key={lang.code} value={lang}>
-              {lang.name}
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenu>
-      </Dropdown>
-    </Box>
+      <DropdownMenu>
+        {languages.map(lang => (
+          <DropdownMenuItem key={lang.code} value={lang}>
+            {lang.name}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenu>
+    </Dropdown>
   );
 };

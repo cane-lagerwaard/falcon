@@ -4,19 +4,30 @@ menu: Components
 ---
 
 import { Playground } from 'docz';
+import { Toggle } from 'react-powerplug';
+import { Portal, Sidebar, H1, H2, Backdrop, Button } from '@deity/falcon-ui';
 
-import { Portal, Button } from '../';
-import { PropsTable } from '../../docs';
+<H2 my="lg" children="Portal" />
 
-# Portal
-
-### Basic usage
+`Portal` component is a wrapper around [React Portals](https://reactjs.org/docs/portals.html)
+and can be used in combination with other `falcon-ui` components (like `Sidebar` or `Backdrop` for example).
+Components rendered  as `Portal` render into a new DOM node (`<div>`) that exists outside the DOM hierarchy of the parent component
+and gets appended to `<body>`.
 
 <Playground>
-  <Portal>
-    <Button bg={{ xs: 'primary', md: 'secondary' }}>Hello!</Button>
-    <Button ml="md" variant="secondary">
-      Secondary
-    </Button>
-  </Portal>
+  <Toggle initial={false}>
+    {({ on, toggle }) => (
+      <React.Fragment>
+        <Button onClick={toggle}>Show sidebar that renders as portal</Button>
+        <Sidebar side="right" as={Portal} visible={on}>
+          <H1 p="lg">Hello!</H1>
+        </Sidebar>
+        <Backdrop
+          onClick={toggle}
+          as={Portal}
+          visible={on}
+        />
+      </React.Fragment>
+    )}
+  </Toggle>
 </Playground>
